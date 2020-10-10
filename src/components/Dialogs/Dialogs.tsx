@@ -3,21 +3,20 @@ import s from "./Dialogs.module.css"
 import {NavLink} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import {PostsType} from "../Profile/MyPosts/MyPosts";
+import {DialogType, MessageType} from "../../App";
 
 
-let dialogs = [
-    {id: 1, name: "Frai"},
-    {id: 2, name: "Bender"}
-]
-let messages = [
-    {id: 1, message: "blablabla"},
-    {id: 2, message: "blablabla"}
+type DialogsType = {
 
-]
-let dialogElements = dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-let messagesElements = messages.map(m => <Message message={m.message}/>)
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
 
-function Dialogs() {
+
+function Dialogs(props: DialogsType) {
+    let dialogElements = props.dialogs.map((d: DialogType) => <DialogItem name={d.name} id={d.id}/>)
+    let messagesElements = props.messages.map((m: MessageType) => <Message message={m.message}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

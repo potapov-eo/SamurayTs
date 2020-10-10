@@ -2,7 +2,6 @@ import React from 'react';
 import s from "./../Dialogs.module.css"
 
 
-
 type MessagePropsType = {
 
     message: string
@@ -13,7 +12,6 @@ function Message(props: MessagePropsType) {
         {props.message}
     </div>
 }
-
 
 
 export default Message
