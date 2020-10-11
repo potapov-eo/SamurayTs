@@ -19,19 +19,20 @@ export type MessageType = {
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostsType>
 }
-type MessagePageType = {
+export type MessagePageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
-type stateType = {
+export type stateType = {
     profilePage: ProfilePageType
     messagesPage: MessagePageType
 }
-type AppType = {
+export type AppType = {
     state: stateType
+    addPost:(postMessage:string)=>void
 }
 
 function App(props: AppType) {
@@ -43,7 +44,8 @@ function App(props: AppType) {
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.messagesPage.dialogs}
                                                                   messages={props.state.messagesPage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}
+                                                                  addPost={props.addPost}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/setting' render={() => <Setting/>}/>
