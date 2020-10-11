@@ -1,6 +1,37 @@
 import React from 'react';
 import {rerenderEntireTree} from "../render";
 
+
+export type DialogType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
+}
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number}
+export type ProfilePageType = {
+    posts: Array<PostsType>
+}
+export type MessagePageType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+}
+export type stateType = {
+    profilePage: ProfilePageType
+    messagesPage: MessagePageType
+}
+export type AppType = {
+    state: stateType
+    addPost:(postMessage:string)=>void
+}
+
+
+
 let state = {
     profilePage: {
         posts: [
@@ -23,6 +54,7 @@ let state = {
 
     }
 }
+
 export let addPost=(postMessage:string)=>{
   let newPost = {
       id:5,

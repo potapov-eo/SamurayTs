@@ -8,32 +8,10 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import Profile from "./components/Profile/Profile";
-import {PostsType} from "./components/Profile/MyPosts/MyPosts";
 
-export type DialogType = {
-    id: number
-    name: string
-}
-export type MessageType = {
-    id: number
-    message: string
-}
+import {AppType} from "./redux/state";
 
-export type ProfilePageType = {
-    posts: Array<PostsType>
-}
-export type MessagePageType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogType>
-}
-export type stateType = {
-    profilePage: ProfilePageType
-    messagesPage: MessagePageType
-}
-export type AppType = {
-    state: stateType
-    addPost:(postMessage:string)=>void
-}
+
 
 function App(props: AppType) {
     return (

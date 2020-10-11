@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, {stateType} from './App';
 
 
-import state, {addPost} from "./redux/state"
+
+import state, {addPost, stateType} from "./redux/state"
 import {BrowserRouter} from "react-router-dom";
+import App from "./App";
 
 export let rerenderEntireTree = (state:stateType) => {
     ReactDOM.render(
