@@ -16,14 +16,13 @@ type MyPostsType = {
 function MyPosts(props: MyPostsType) {
 
     let postsElements = props.posts.map((p: PostsType) => <Post message={p.message} likesCount={p.likesCount}/>);
-    let newPostElement:RefObject<HTMLTextAreaElement> =React.createRef()
+    let newPostElement =React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
-        // @ts-ignore
+       if(newPostElement.current){
         let text = newPostElement.current.value
         props.addPost(text)
-        // @ts-ignore
-        newPostElement.current.value=""
+        newPostElement.current.value=""}
     }
     return (
         <div className={s.postBlock}>
