@@ -12,7 +12,6 @@ import Profile from "./components/Profile/Profile";
 import {AppType} from "./redux/state";
 
 
-
 function App(props: AppType) {
     return (
         <BrowserRouter>
@@ -23,7 +22,11 @@ function App(props: AppType) {
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.messagesPage.dialogs}
                                                                   messages={props.state.messagesPage.messages}/>}/>
                     <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}
-                                                                  addPost={props.addPost}/>}/>
+                                                                  addPost={props.addPost}
+                                                                  newPost={props.state.profilePage.newPost}
+                                                                  updateNewPostText={props.updateNewPostText}/>}
+                    />
+
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/setting' render={() => <Setting/>}/>

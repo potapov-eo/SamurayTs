@@ -6,7 +6,9 @@ import {PostsType} from "../../redux/state";
 
 type ProfileType={
     posts:Array<PostsType>
-    addPost:(postMessage:string)=>void
+    addPost:()=>void
+    newPost:string
+    updateNewPostText:(newText:string)=>void
 }
 
 
@@ -15,7 +17,9 @@ function Profile(props:ProfileType) {
         <div>
             <ProfileInfo />
             <MyPosts posts={props.posts}
-                     addPost={props.addPost}/>
+                     addPost={props.addPost}
+                     newPost={props.newPost}
+                     updateNewPostText={props.updateNewPostText}/>
         </div>
 
     )
