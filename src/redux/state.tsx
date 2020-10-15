@@ -1,5 +1,6 @@
 import React from 'react';
-import {rerenderEntireTree} from "../render";
+
+
 
 export type DialogType = {
     id: number
@@ -55,7 +56,9 @@ newPost:""
 
     }
 }
-
+let  rerenderEntireTree=(state:stateType)=>{
+    console.log("  dfhdfhdfh ")
+}
 export let addPost=()=>{
   let newPost:PostsType = {
       id:5,
@@ -66,8 +69,11 @@ export let addPost=()=>{
     state.profilePage.newPost=""
     rerenderEntireTree(state)
 }
-export let updateNewPostText=(newText:string) =>{
+export const updateNewPostText=(newText:string) =>{
     state.profilePage.newPost=newText
     rerenderEntireTree(state)
+}
+export const subscribe =(observer:any)=>{
+    rerenderEntireTree = observer
 }
 export default state;

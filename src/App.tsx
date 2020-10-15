@@ -8,7 +8,6 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import Profile from "./components/Profile/Profile";
-
 import {AppType} from "./redux/state";
 
 
