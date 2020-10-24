@@ -56,9 +56,7 @@ newPost:""
 
     }
 }
-let  rerenderEntireTree=(state:stateType)=>{
-    console.log("  dfhdfhdfh ")
-}
+
 export let addPost=()=>{
   let newPost:PostsType = {
       id:5,
@@ -67,13 +65,17 @@ export let addPost=()=>{
   }
     state.profilePage.posts.push(newPost)
     state.profilePage.newPost=""
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 export const updateNewPostText=(newText:string) =>{
     state.profilePage.newPost=newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
-export const subscribe =(observer:any)=>{
+
+let  rerenderEntireTree=()=>{
+    console.log("  dfhdfhdfh ")
+}//onChange()
+export const subscribe =(observer:()=>void)=>{
     rerenderEntireTree = observer
 }
 export default state;

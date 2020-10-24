@@ -6,7 +6,7 @@ import state, {addPost, stateType, subscribe, updateNewPostText} from "./redux/s
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
- let rerenderEntireTree = (state:stateType) => {
+ let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
@@ -15,7 +15,7 @@ import App from "./App";
 
 
 
-rerenderEntireTree(state)
+rerenderEntireTree()
 subscribe(rerenderEntireTree)
 
 // If you want your app to work offline and load faster, you can change
