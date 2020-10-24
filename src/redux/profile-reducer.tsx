@@ -1,7 +1,8 @@
 import {ActionType, MessagePageType, MessageType, PostsType, ProfilePageType} from "./state";
 
 const profileReduser=(state:ProfilePageType, action:ActionType)=>{
-    if (action.type === "ADD-POST") {
+    if (action.type==="ADD-POST") {
+
         let newPost: PostsType = {
             id: 5,
             message: state.newPost,
