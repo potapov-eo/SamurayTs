@@ -3,16 +3,10 @@ import s from "./MyPosts.module.css"
 import Post from './Post/Post';
 import {ActionType, AddPostAC, ChangeNewTextAC, PostsType} from "../../../redux/state";
 
-/*export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}*/
+
 type MyPostsType = {
     posts: Array<PostsType>
-    /*  addPost:()=>void*/
     newPost: string
-    /* updateNewPostText:(newText:string)=>void*/
     dispatch: (action: ActionType) => void
 }
 

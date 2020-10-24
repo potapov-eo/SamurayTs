@@ -21,6 +21,7 @@ export type ProfilePageType = {
 export type MessagePageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
+    newMessageBody:string
 }
 export type stateType = {
     profilePage: ProfilePageType
@@ -48,7 +49,8 @@ export type ChangeNewTextActionType = {
     type: "CHANGE-NEW-TEXT"
     newText: string
 }
-export type ActionType = (ReturnType<typeof AddPostAC> | (ReturnType<typeof ChangeNewTextAC>))
+export type ActionType = (ReturnType<typeof AddPostAC> | (ReturnType<typeof ChangeNewTextAC>) |
+    (ReturnType<typeof ChangeNewMessageBodyAC>| ReturnType<typeof AddNewMessageAC>) )
 
 let store: StoreType = {
     _state: {
@@ -70,23 +72,10 @@ let store: StoreType = {
                 {id: 1, name: "Frai"},
                 {id: 2, name: "Bender"}
             ],
-
+            newMessageBody: ""
         }
     },
-    /*updateNewPostText(newText: string) {
-        this._state.profilePage.newPost = newText
-        this._rerenderEntireTree()
-    },*/
-    /* addPost() {
-         let newPost: PostsType = {
-             id: 5,
-             message: this._state.profilePage.newPost,
-             likesCount: 0
-         }
-         this._state.profilePage.posts.push(newPost)
-         this._state.profilePage.newPost = ""
-         this._rerenderEntireTree()
-     },*/
+
     _rerenderEntireTree() {
         console.log("  dfhdfhdfh ")
     },//onChange()
@@ -109,17 +98,24 @@ let store: StoreType = {
         } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.newPost = action.newText
             this._rerenderEntireTree()
+        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY"){
+            this._state.messagesPage.newMessageBody = action.newBody
+            this._rerenderEntireTree()
+        }else if (action.type === "ADD-NEW-MESSAGE"){
+            let newMessage: MessageType = {
+                id: 3,
+                message: this._state.messagesPage.newMessageBody}
+            this._state.messagesPage.messages.push(newMessage)
+            this._state.messagesPage.newMessageBody = ""
+            this._rerenderEntireTree()
         }
     }
 
 }
-export const AddPostAC = () => {
-    return {type: "ADD-POST"} as const
-}
-export const ChangeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText
-    } as const
-}
+export const AddPostAC = () => ({type: "ADD-POST"} as const)
+export const ChangeNewTextAC = (newText: string) =>
+    ({type: "CHANGE-NEW-TEXT", newText} as const)
+export const ChangeNewMessageBodyAC = (newBody: string) =>
+    ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
+export const AddNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
 export default store;
