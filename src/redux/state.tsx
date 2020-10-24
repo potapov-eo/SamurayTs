@@ -1,4 +1,6 @@
 import React from 'react';
+import profileReduser from "./profile-reducer";
+import dialogsReduser from "./dialogs-reducer";
 
 
 export type DialogType = {
@@ -86,29 +88,12 @@ let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost: PostsType = {
-                id: 5,
-                message: this._state.profilePage.newPost,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPost = ""
-            this._rerenderEntireTree()
-        } else if (action.type === "CHANGE-NEW-TEXT") {
-            this._state.profilePage.newPost = action.newText
-            this._rerenderEntireTree()
-        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY"){
-            this._state.messagesPage.newMessageBody = action.newBody
-            this._rerenderEntireTree()
-        }else if (action.type === "ADD-NEW-MESSAGE"){
-            let newMessage: MessageType = {
-                id: 3,
-                message: this._state.messagesPage.newMessageBody}
-            this._state.messagesPage.messages.push(newMessage)
-            this._state.messagesPage.newMessageBody = ""
-            this._rerenderEntireTree()
-        }
+
+        profileReduser(this._state.profilePage,action)
+        dialogsReduser(this._state.messagesPage, action)
+
+
+        this._rerenderEntireTree()
     }
 
 }
