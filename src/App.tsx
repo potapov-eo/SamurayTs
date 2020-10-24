@@ -8,22 +8,25 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import Profile from "./components/Profile/Profile";
-import {AppType} from "./redux/state";
+import {StoreType} from "./redux/state";
 
+type PropsType = {
+    store:StoreType
+}
 
-function App(props: AppType) {
+function App(props: PropsType) {
     return (
         <BrowserRouter>
             <div className="App-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.messagesPage.dialogs}
-                                                                  messages={props.state.messagesPage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}
-                                                                  addPost={props.addPost}
-                                                                  newPost={props.state.profilePage.newPost}
-                                                                  updateNewPostText={props.updateNewPostText}/>}
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.store._state.messagesPage.dialogs}
+                                                                  messages={props.store._state.messagesPage.messages}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.store._state.profilePage.posts}
+                                                                  addPost={props.store.addPost.bind(props.store)}
+                                                                  newPost={props.store._state.profilePage.newPost}
+                                                                  updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}
                     />
 
                     <Route path='/news' render={() => <News/>}/>

@@ -39,6 +39,7 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     subscribe: (observer: () => void) => void
     getState: () => stateType
+    dispatch:(action:any)=>void
 }
 
 let store: StoreType = {
@@ -86,7 +87,12 @@ let store: StoreType = {
     },
     getState() {
         return this._state
-    }
+    },
+    dispatch(action){
+        if(action.type==="ADD-POST"){
+            
+        }
+}
 
 }
 
