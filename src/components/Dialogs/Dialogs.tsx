@@ -40,12 +40,14 @@ function Dialogs(props: DialogsType) {
             </div>
             <div className={s.messeges}>
                 {messagesElements}
-            </div>
+
+
             <div>
                 <textarea onChange={onNewTextChange} value={props.newMessageBody}/>
             </div>
             <div>
                 <button onClick={addNewMessage}>ADD POST</button>
+            </div>
             </div>
         </div>
     )
