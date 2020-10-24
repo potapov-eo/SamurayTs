@@ -17,4 +17,8 @@ const profileReduser=(state:ProfilePageType, action:ActionType)=>{
     }
     return state
 }
+
+export const AddPostAC = () => ({type: "ADD-POST"} as const)
+export const ChangeNewTextAC = (newText: string) =>
+    ({type: "CHANGE-NEW-TEXT", newText} as const)
 export default profileReduser

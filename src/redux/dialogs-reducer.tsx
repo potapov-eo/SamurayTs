@@ -15,4 +15,7 @@ import profileReduser from "./profile-reducer";
     }
     return state
 }
+export const ChangeNewMessageBodyAC = (newBody: string) =>
+    ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
+export const AddNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
 export default dialogsReduser

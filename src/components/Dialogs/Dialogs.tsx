@@ -5,12 +5,11 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {
     ActionType,
-    AddNewMessageAC,
-    ChangeNewMessageBodyAC,
-    ChangeNewTextAC,
+
     DialogType,
     MessageType
 } from "../../redux/state";
+import {AddNewMessageAC, ChangeNewMessageBodyAC} from "../../redux/dialogs-reducer";
 
 
 type DialogsType = {

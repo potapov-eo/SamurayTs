@@ -1,6 +1,6 @@
 import React from 'react';
-import profileReduser from "./profile-reducer";
-import dialogsReduser from "./dialogs-reducer";
+import profileReduser, {AddPostAC, ChangeNewTextAC} from "./profile-reducer";
+import dialogsReduser, {AddNewMessageAC, ChangeNewMessageBodyAC} from "./dialogs-reducer";
 
 
 export type DialogType = {
@@ -97,10 +97,6 @@ let store: StoreType = {
     }
 
 }
-export const AddPostAC = () => ({type: "ADD-POST"} as const)
-export const ChangeNewTextAC = (newText: string) =>
-    ({type: "CHANGE-NEW-TEXT", newText} as const)
-export const ChangeNewMessageBodyAC = (newBody: string) =>
-    ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
-export const AddNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
+
+
 export default store;

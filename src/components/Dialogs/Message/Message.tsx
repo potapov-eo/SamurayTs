@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from "./../Dialogs.module.css"
-import {ActionType, AddNewMessageAC, AddPostAC, ChangeNewTextAC, PostsType} from "../../../redux/state";
+import { PostsType} from "../../../redux/state";
 
 
 type MessagePropsType = {
