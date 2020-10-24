@@ -2,17 +2,16 @@ import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import store  from "./redux/state"
+import store from "./redux/state"
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
- let rerenderEntireTree = () => {
+let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} />
+            <App store={store}/>
         </BrowserRouter>, document.getElementById('root'));
 }
-
 
 
 rerenderEntireTree()

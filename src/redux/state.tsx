@@ -34,13 +34,21 @@ export type AppType = {
 
 export type StoreType = {
     _state: stateType
-    updateNewPostText: (newText: string) => void
-    addPost: () => void
+
+
     _rerenderEntireTree: () => void
     subscribe: (observer: () => void) => void
     getState: () => stateType
-    dispatch:(action:any)=>void
+    dispatch: (action: ActionType) => void
 }
+export type AddPostActionType = {
+    type: "ADD-POST"
+}
+export type ChangeNewTextActionType = {
+    type: "CHANGE-NEW-TEXT"
+    newText: string
+}
+export type ActionType = (ReturnType<typeof AddPostAC> | (ReturnType<typeof ChangeNewTextAC>))
 
 let store: StoreType = {
     _state: {
@@ -65,20 +73,20 @@ let store: StoreType = {
 
         }
     },
-    updateNewPostText(newText: string) {
+    /*updateNewPostText(newText: string) {
         this._state.profilePage.newPost = newText
         this._rerenderEntireTree()
-    },
-    addPost() {
-        let newPost: PostsType = {
-            id: 5,
-            message: this._state.profilePage.newPost,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPost = ""
-        this._rerenderEntireTree()
-    },
+    },*/
+    /* addPost() {
+         let newPost: PostsType = {
+             id: 5,
+             message: this._state.profilePage.newPost,
+             likesCount: 0
+         }
+         this._state.profilePage.posts.push(newPost)
+         this._state.profilePage.newPost = ""
+         this._rerenderEntireTree()
+     },*/
     _rerenderEntireTree() {
         console.log("  dfhdfhdfh ")
     },//onChange()
@@ -88,13 +96,30 @@ let store: StoreType = {
     getState() {
         return this._state
     },
-    dispatch(action){
-        if(action.type==="ADD-POST"){
-            
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost: PostsType = {
+                id: 5,
+                message: this._state.profilePage.newPost,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPost = ""
+            this._rerenderEntireTree()
+        } else if (action.type === "CHANGE-NEW-TEXT") {
+            this._state.profilePage.newPost = action.newText
+            this._rerenderEntireTree()
         }
-}
+    }
 
 }
-
-
+export const AddPostAC = () => {
+    return {type: "ADD-POST"} as const
+}
+export const ChangeNewTextAC = (newText: string) => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText
+    } as const
+}
 export default store;

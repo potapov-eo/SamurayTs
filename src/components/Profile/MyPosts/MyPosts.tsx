@@ -1,7 +1,7 @@
 import React, {ChangeEvent, RefObject} from 'react';
 import s from "./MyPosts.module.css"
 import Post from './Post/Post';
-import {PostsType} from "../../../redux/state";
+import {ActionType, AddPostAC, ChangeNewTextAC, PostsType} from "../../../redux/state";
 
 /*export type PostsType = {
     id: number
@@ -10,9 +10,10 @@ import {PostsType} from "../../../redux/state";
 }*/
 type MyPostsType = {
     posts: Array<PostsType>
-    addPost:()=>void
-    newPost:string
-    updateNewPostText:(newText:string)=>void
+    /*  addPost:()=>void*/
+    newPost: string
+    /* updateNewPostText:(newText:string)=>void*/
+    dispatch: (action: ActionType) => void
 }
 
 function MyPosts(props: MyPostsType) {
@@ -22,12 +23,12 @@ function MyPosts(props: MyPostsType) {
 
     let addPost = () => {
 
-        props.addPost()
-         }
+        props.dispatch(AddPostAC())
+    }
 
-    const onPostChange =(e:ChangeEvent<HTMLTextAreaElement>)=>{
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        props.updateNewPostText(text)
+        props.dispatch(ChangeNewTextAC(text))
     }
     return (
         <div className={s.postBlock}>
