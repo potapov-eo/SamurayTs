@@ -1,16 +1,30 @@
-import {ActionType, MessagePageType, MessageType, PostsType} from "./state";
+import {ActionType, MessagePageType, MessageType, PostsType} from "./store";
 import profileReduser from "./profile-reducer";
 
- const dialogsReduser=(state:MessagePageType, action:ActionType)=>{
-     if (action.type === "UPDATE-NEW-MESSAGE-BODY"){
-         state.newMessageBody = action.newBody
 
-    }else if (action.type === "ADD-NEW-MESSAGE"){
+
+let initislState = {
+    messages: [
+        {id: 1, message: "blablabla"},
+        {id: 2, message: "blablabla"}
+    ],
+    dialogs: [
+        {id: 1, name: "Frai"},
+        {id: 2, name: "Bender"}
+    ],
+    newMessageBody: ""
+}
+const dialogsReduser = (state=initislState, action: ActionType) => {
+    if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+        state.newMessageBody = action.newBody
+
+    } else if (action.type === "ADD-NEW-MESSAGE") {
         let newMessage: MessageType = {
             id: 3,
-            message: state.newMessageBody}
-         state.messages.push(newMessage)
-         state.newMessageBody = ""
+            message: state.newMessageBody
+        }
+        state.messages.push(newMessage)
+        state.newMessageBody = ""
 
     }
     return state

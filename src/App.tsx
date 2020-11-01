@@ -8,13 +8,14 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import Profile from "./components/Profile/Profile";
-import {StoreType} from "./redux/state";
+import { StoresType} from "./redux/redux-store";
 
-type PropsType = {
-    store: StoreType
+type PropsRType = {
+    store:StoresType
+
 }
 
-function App(props: PropsType) {
+function App(props: PropsRType) {
     let state = props.store.getState()
     return (
         <BrowserRouter>
@@ -22,14 +23,14 @@ function App(props: PropsType) {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={state.messagesPage.dialogs}
-                                                                  messages={state.messagesPage.messages}
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={state.dialogsReduser.dialogs}
+                                                                  messages={state.dialogsReduser.messages}
                                                                   dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newMessageBody={state.messagesPage.newMessageBody}
+                                                                  newMessageBody={state.dialogsReduser.newMessageBody}
                     />}/>
-                    <Route path='/profile' render={() => <Profile posts={state.profilePage.posts}
+                    <Route path='/profile' render={() => <Profile posts={state.profileReduser.posts}
                                                                   dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newPost={state.profilePage.newPost}
+                                                                  newPost={state.profileReduser.newPost}
 
                     />}
                     />

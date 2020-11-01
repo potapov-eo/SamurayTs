@@ -23,7 +23,7 @@ export type ProfilePageType = {
 export type MessagePageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
-    newMessageBody:string
+    newMessageBody: string
 }
 export type stateType = {
     profilePage: ProfilePageType
@@ -52,7 +52,7 @@ export type ChangeNewTextActionType = {
     newText: string
 }
 export type ActionType = (ReturnType<typeof AddPostAC> | (ReturnType<typeof ChangeNewTextAC>) |
-    (ReturnType<typeof ChangeNewMessageBodyAC>| ReturnType<typeof AddNewMessageAC>) )
+    (ReturnType<typeof ChangeNewMessageBodyAC> | ReturnType<typeof AddNewMessageAC>))
 
 let store: StoreType = {
     _state: {
@@ -89,7 +89,7 @@ let store: StoreType = {
     },
     dispatch(action) {
 
-        profileReduser(this._state.profilePage,action)
+        profileReduser(this._state.profilePage, action)
         dialogsReduser(this._state.messagesPage, action)
 
 

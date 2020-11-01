@@ -8,7 +8,7 @@ import {
 
     DialogType,
     MessageType
-} from "../../redux/state";
+} from "../../redux/store";
 import {AddNewMessageAC, ChangeNewMessageBodyAC} from "../../redux/dialogs-reducer";
 
 
@@ -41,12 +41,12 @@ function Dialogs(props: DialogsType) {
                 {messagesElements}
 
 
-            <div>
-                <textarea onChange={onNewTextChange} value={props.newMessageBody}/>
-            </div>
-            <div>
-                <button onClick={addNewMessage}>ADD POST</button>
-            </div>
+                <div>
+                    <textarea onChange={onNewTextChange} value={props.newMessageBody}/>
+                </div>
+                <div>
+                    <button onClick={addNewMessage}>ADD POST</button>
+                </div>
             </div>
         </div>
     )
