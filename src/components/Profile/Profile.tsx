@@ -11,16 +11,13 @@ type ProfileType = {
     newPost: string
     dispatch: (action: ActionType) => void
 }
-type PropsRType = {
-    store: StoresType
 
-}
 
-function Profile(props: PropsRType) {
+function Profile() {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer />
         </div>
 
     )
