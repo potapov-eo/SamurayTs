@@ -1,4 +1,4 @@
-import {ActionType, MessagePageType, MessageType, PostsType, ProfilePageType} from "./store";
+import {ActionType, PostsType} from "./store";
 
 
 let initislState= {

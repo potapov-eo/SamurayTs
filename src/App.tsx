@@ -28,9 +28,7 @@ function App(props: PropsRType) {
                                                                   dispatch={props.store.dispatch.bind(props.store)}
                                                                   newMessageBody={state.dialogsReduser.newMessageBody}
                     />}/>
-                    <Route path='/profile' render={() => <Profile posts={state.profileReduser.posts}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newPost={state.profileReduser.newPost}
+                    <Route path='/profile' render={() => <Profile store={props.store}
 
                     />}
                     />
