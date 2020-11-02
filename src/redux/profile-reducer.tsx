@@ -8,7 +8,7 @@ let initislState= {
         {id: 1, message: "Hi, how are you???", likesCount: 15},
         {id: 2, message: "1111", likesCount: 11}
     ],
-    newPost: ""
+    newPost: "MU"
 }
 const profileReduser = (state=initislState, action: ActionType) => {
     if (action.type === "ADD-POST") {

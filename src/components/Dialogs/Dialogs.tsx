@@ -3,35 +3,30 @@ import s from "./Dialogs.module.css"
 import {NavLink} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {
-    ActionType,
-
-    DialogType,
-    MessageType
-} from "../../redux/store";
-import {AddNewMessageAC, ChangeNewMessageBodyAC} from "../../redux/dialogs-reducer";
-
+import {DialogType, MessageType} from "../../redux/store";
 
 type DialogsType = {
-    dispatch: (action: ActionType) => void
     newMessageBody: string
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    addNewMessage: () => void
+    onNewTextChange: (newMessage: string) => void
 }
 
 
 function Dialogs(props: DialogsType) {
     let dialogElements = props.dialogs.map((d: DialogType) => <DialogItem name={d.name} id={d.id}/>)
     let messagesElements = props.messages.map((m: MessageType) => <Message message={m.message}/>)
-    let addNewMessage = () => {
 
-        props.dispatch(AddNewMessageAC())
+    let addNewMessage = () => {
+        props.addNewMessage()
     }
 
     const onNewTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newMessage = e.currentTarget.value
-        props.dispatch(ChangeNewMessageBodyAC(newMessage))
+        props.onNewTextChange(newMessage)
     }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -39,8 +34,6 @@ function Dialogs(props: DialogsType) {
             </div>
             <div className={s.messeges}>
                 {messagesElements}
-
-
                 <div>
                     <textarea onChange={onNewTextChange} value={props.newMessageBody}/>
                 </div>

@@ -1,15 +1,14 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from "./MyPosts.module.css"
 import Post from './Post/Post';
-import {ActionType, PostsType} from "../../../redux/store";
-import {AddPostAC, ChangeNewTextAC} from "../../../redux/profile-reducer";
+import {PostsType} from "../../../redux/store";
 
 
 type MyPostsType = {
     posts: Array<PostsType>
     newPost: string
     addPost: () => void
-    onPostChange:(text:string) => void
+    onPostChange: (text: string) => void
 }
 
 function MyPosts(props: MyPostsType) {

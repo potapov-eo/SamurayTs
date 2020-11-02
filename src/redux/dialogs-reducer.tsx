@@ -12,7 +12,7 @@ let initislState = {
         {id: 1, name: "Frai"},
         {id: 2, name: "Bender"}
     ],
-    newMessageBody: ""
+    newMessageBody: "ManUtd"
 }
 const dialogsReduser = (state=initislState, action: ActionType) => {
     if (action.type === "UPDATE-NEW-MESSAGE-BODY") {

@@ -9,6 +9,7 @@ import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import Profile from "./components/Profile/Profile";
 import { StoresType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type PropsRType = {
     store:StoresType
@@ -23,10 +24,7 @@ function App(props: PropsRType) {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={state.dialogsReduser.dialogs}
-                                                                  messages={state.dialogsReduser.messages}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newMessageBody={state.dialogsReduser.newMessageBody}
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}
                     />}/>
                     <Route path='/profile' render={() => <Profile store={props.store}
 
