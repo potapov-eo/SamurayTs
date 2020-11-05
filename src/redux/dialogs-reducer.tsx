@@ -1,7 +1,4 @@
-import {ActionType, MessagePageType, MessageType, PostsType} from "./store";
-import profileReducer from "./profile-reducer";
-
-
+import {ActionType,  MessageType,} from "./store";
 
 let initislState = {
     messages: [

@@ -1,6 +1,5 @@
 import {ActionType, PostsType} from "./store";
 
-
 let initialState= {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 12},

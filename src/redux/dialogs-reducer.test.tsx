@@ -1,7 +1,5 @@
 import {MessagePageType} from "./store";
-import profileReducer, {addPostAC} from "./profile-reducer";
 import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
-
 
 let initialState:MessagePageType
 beforeEach(() => {
