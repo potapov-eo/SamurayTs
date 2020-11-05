@@ -1,12 +1,10 @@
 
 import {createStore, combineReducers} from "redux"
-import profileReduser from "./profile-reducer";
+import profileReducer from "./profile-reducer";
 import dialogsReduser from "./dialogs-reducer";
 
 let reducers = combineReducers({
-/* profileReduser,
- dialogsReduser    альтернативный синтаксис*/
- profileReduser:profileReduser,
+ profileReduser:profileReducer,
  dialogsReduser:dialogsReduser
 })
 export type RootReducerType = typeof reducers

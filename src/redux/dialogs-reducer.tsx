@@ -1,5 +1,5 @@
 import {ActionType, MessagePageType, MessageType, PostsType} from "./store";
-import profileReduser from "./profile-reducer";
+import profileReducer from "./profile-reducer";
 
 
 

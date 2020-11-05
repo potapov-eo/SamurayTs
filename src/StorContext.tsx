@@ -3,7 +3,7 @@ import store, {StoresType} from "./redux/redux-store";
 
 type PropsRType = {
     store: StoresType
-    children:any
+    children:React.ReactNode
 }
 
 const StoreContext=React.createContext({}as StoresType )

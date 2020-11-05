@@ -1,5 +1,5 @@
 import React from 'react';
-import profileReduser, {AddPostAC, ChangeNewTextAC} from "./profile-reducer";
+import profileReducer, {AddPostAC, ChangeNewTextAC} from "./profile-reducer";
 import dialogsReduser, {AddNewMessageAC, ChangeNewMessageBodyAC} from "./dialogs-reducer";
 
 
@@ -89,7 +89,7 @@ let store: StoreType = {
     },
     dispatch(action) {
 
-        profileReduser(this._state.profilePage, action)
+        profileReducer(this._state.profilePage, action)
         dialogsReduser(this._state.messagesPage, action)
 
 
