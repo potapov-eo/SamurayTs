@@ -1,13 +1,10 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {addNewMessageAC, changeNewMessageBodyAC} from "../../redux/dialogs-reducer";
-
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StorContext";
-import {addPostAC} from "../../redux/profile-reducer";
+import {connect} from "react-redux";
 
 
-
-function DialogsContainer() {
+/*function DialogsContainer() {
     return (
         <StoreContext.Consumer>
             {
@@ -32,6 +29,25 @@ function DialogsContainer() {
             }
         </StoreContext.Consumer>
     )
+}*/
+
+let mapStateToProps =(state:any)=>{
+    return{
+        dialogs: state.dialogsReduser.dialogs,
+        messages:state.dialogsReduser.messages,
+        newMessageBody:state.dialogsReduser.newMessageBody
+    }
 }
+let mapDispatchToProps =(dispatch:any)=>{
+    return{
+        addNewMessage: ()=>{
+            dispatch(addNewMessageAC())
+        },
+        onNewTextChange: (newMessage:string)=>{
+            dispatch(changeNewMessageBodyAC(newMessage))
+        }
+    }
+    }
+    const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer

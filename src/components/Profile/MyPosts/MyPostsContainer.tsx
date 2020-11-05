@@ -1,10 +1,10 @@
 import React from 'react';
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
+import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StorContext";
 
 
-function MyPostsContainer() {
+/*function MyPostsContainer() {
 
     return (
         <StoreContext.Consumer>
@@ -26,6 +26,26 @@ function MyPostsContainer() {
             }
         </StoreContext.Consumer>
     )
+}*/
+let mapStateToProps =(state:any)=>{
+   debugger
+    return{
+
+        posts: state.profileReduser.posts,
+        newPost:state.profileReduser.newPost,
+           }
 }
+let mapDispatchToProps =(dispatch:any)=>{
+    return{
+        addPost: ()=>{
+            dispatch(addPostAC())
+        },
+        onPostChange: (text:string)=>{
+            dispatch(changeNewTextAC(text))
+        }
+    }
+}
+const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts)
+
 
 export default MyPostsContainer
