@@ -1,5 +1,5 @@
-import {ActionType, PostsType, ProfilePageType} from "./store";
-import profileReducer, {AddPostAC, ChangeNewTextAC} from "./profile-reducer";
+import {ProfilePageType} from "./store";
+import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 
 let initialState: ProfilePageType
 beforeEach(() => {
@@ -16,7 +16,7 @@ beforeEach(() => {
 test('add post should be correct', () => {
 
 
-    const action = AddPostAC();
+    const action = addPostAC();
 
     const endState = profileReducer(initialState, action)
 
@@ -28,7 +28,7 @@ test('add post should be correct', () => {
 test('Changed new text should be correct', () => {
 
 
-    const action = ChangeNewTextAC("HELLO WORD");
+    const action = changeNewTextAC("HELLO WORD");
 
     const endState = profileReducer(initialState, action)
 

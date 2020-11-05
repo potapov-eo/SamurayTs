@@ -1,6 +1,6 @@
 import React from 'react';
-import profileReducer, {AddPostAC, ChangeNewTextAC} from "./profile-reducer";
-import dialogsReduser, {AddNewMessageAC, ChangeNewMessageBodyAC} from "./dialogs-reducer";
+import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
+import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
 
 
 export type DialogType = {
@@ -51,8 +51,8 @@ export type ChangeNewTextActionType = {
     type: "CHANGE-NEW-TEXT"
     newText: string
 }
-export type ActionType = (ReturnType<typeof AddPostAC> | (ReturnType<typeof ChangeNewTextAC>) |
-    (ReturnType<typeof ChangeNewMessageBodyAC> | ReturnType<typeof AddNewMessageAC>))
+export type ActionType = (ReturnType<typeof addPostAC> | (ReturnType<typeof changeNewTextAC>) |
+    (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>))
 
 let store: StoreType = {
     _state: {
@@ -90,7 +90,7 @@ let store: StoreType = {
     dispatch(action) {
 
         profileReducer(this._state.profilePage, action)
-        dialogsReduser(this._state.messagesPage, action)
+        dialogsReducer(this._state.messagesPage, action)
 
 
         this._rerenderEntireTree()

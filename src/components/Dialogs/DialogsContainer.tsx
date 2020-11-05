@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from 'react';
-import {AddNewMessageAC, ChangeNewMessageBodyAC} from "../../redux/dialogs-reducer";
+import {addNewMessageAC, changeNewMessageBodyAC} from "../../redux/dialogs-reducer";
 
 import Dialogs from "./Dialogs";
 import StoreContext from "../../StorContext";
-import {AddPostAC} from "../../redux/profile-reducer";
+import {addPostAC} from "../../redux/profile-reducer";
 
 
 
@@ -13,14 +13,14 @@ function DialogsContainer() {
             {
                 (store) => {
                     let addPost = () => {
-                        store.dispatch(AddPostAC())
+                        store.dispatch(addPostAC())
                     }
     let addNewMessage = () => {
-        store.dispatch(AddNewMessageAC())
+        store.dispatch(addNewMessageAC())
     }
 
     const onNewTextChange = (newMessage: string) => {
-        store.dispatch(ChangeNewMessageBodyAC(newMessage))
+        store.dispatch(changeNewMessageBodyAC(newMessage))
     }
 
     return <Dialogs addNewMessage={addNewMessage}

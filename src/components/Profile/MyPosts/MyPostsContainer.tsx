@@ -1,5 +1,5 @@
 import React from 'react';
-import {AddPostAC, ChangeNewTextAC} from "../../../redux/profile-reducer";
+import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import StoreContext from "../../../StorContext";
 
@@ -11,11 +11,11 @@ function MyPostsContainer() {
             {
                 (store) => {
                     let addPost = () => {
-                       store.dispatch(AddPostAC())
+                       store.dispatch(addPostAC())
                     }
 
                     const onPostChange = (text: string) => {
-                        store.dispatch(ChangeNewTextAC(text))
+                        store.dispatch(changeNewTextAC(text))
                     }
 
                   return  <MyPosts addPost={addPost}

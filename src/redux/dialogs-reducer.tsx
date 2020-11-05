@@ -14,11 +14,14 @@ let initislState = {
     ],
     newMessageBody: "ManUtd"
 }
-const dialogsReduser = (state=initislState, action: ActionType) => {
-    if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-        state.newMessageBody = action.newBody
-
-    } else if (action.type === "ADD-NEW-MESSAGE") {
+const dialogsReducer = (state=initislState, action: ActionType) => {
+    switch (action.type){
+        case "UPDATE-NEW-MESSAGE-BODY": {
+            const stateCopy = {...state}
+            stateCopy.newMessageBody = action.newBody
+            return stateCopy
+    }
+        case "ADD-NEW-MESSAGE": {
         let newMessage: MessageType = {
             id: 3,
             message: state.newMessageBody
@@ -27,9 +30,9 @@ const dialogsReduser = (state=initislState, action: ActionType) => {
         state.newMessageBody = ""
 
     }
-    return state
-}
-export const ChangeNewMessageBodyAC = (newBody: string) =>
+        default: return state
+}}
+export const changeNewMessageBodyAC = (newBody: string) =>
     ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
-export const AddNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
-export default dialogsReduser
+export const addNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
+export default dialogsReducer
