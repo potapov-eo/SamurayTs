@@ -10,7 +10,7 @@ beforeEach(() => {
             {id: 1, message: "Hi, how are you???", likesCount: 15},
             {id: 2, message: "1111", likesCount: 11}
         ],
-        newPost: "MU"
+        newPostText: "MU"
     }
 })
 test('add post should be correct', () => {
@@ -23,7 +23,7 @@ test('add post should be correct', () => {
 
     expect(endState.posts.length).toBe(5);
     expect(endState.posts[4].likesCount).toBe(0);
-    expect(endState.newPost).toBe("");
+    expect(endState.newPostText).toBe("");
 });
 test('Changed new text should be correct', () => {
 
@@ -34,5 +34,5 @@ test('Changed new text should be correct', () => {
 
 
 
-    expect(endState.newPost).toBe("HELLO WORD");
+    expect(endState.newPostText).toBe("HELLO WORD");
 });

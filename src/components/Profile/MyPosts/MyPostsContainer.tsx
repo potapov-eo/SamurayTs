@@ -20,7 +20,7 @@ import MyPosts from "./MyPosts";
 
                   return  <MyPosts addPost={addPost}
                              onPostChange={onPostChange}
-                             newPost={store.getState().profileReduser.newPost}
+                             newPostText={store.getState().profileReduser.newPostText}
                              posts={store.getState().profileReduser.posts}/>
                 }
             }
@@ -28,11 +28,11 @@ import MyPosts from "./MyPosts";
     )
 }*/
 let mapStateToProps =(state:any)=>{
-   debugger
+
     return{
 
         posts: state.profileReduser.posts,
-        newPost:state.profileReduser.newPost,
+        newPost:state.profileReduser.newPostText,
            }
 }
 let mapDispatchToProps =(dispatch:any)=>{

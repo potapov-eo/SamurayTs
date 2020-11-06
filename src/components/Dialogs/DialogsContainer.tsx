@@ -2,7 +2,8 @@ import React from 'react';
 import {addNewMessageAC, changeNewMessageBodyAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-
+import {Dispatch} from "redux"
+import {AppStateType} from '../../redux/redux-store';
 
 /*function DialogsContainer() {
     return (
@@ -31,23 +32,23 @@ import {connect} from "react-redux";
     )
 }*/
 
-let mapStateToProps =(state:any)=>{
-    return{
-        dialogs: state.dialogsReduser.dialogs,
-        messages:state.dialogsReduser.messages,
-        newMessageBody:state.dialogsReduser.newMessageBody
+let mapStateToProps = (state: AppStateType) => {
+    return {
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessageBody: state.dialogsPage.newMessageBody,
     }
 }
-let mapDispatchToProps =(dispatch:any)=>{
-    return{
-        addNewMessage: ()=>{
+let mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        addNewMessage: () => {
             dispatch(addNewMessageAC())
         },
-        onNewTextChange: (newMessage:string)=>{
+        onNewTextChange: (newMessage: string) => {
             dispatch(changeNewMessageBodyAC(newMessage))
         }
     }
-    }
-    const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+}
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer

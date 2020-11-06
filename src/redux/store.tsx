@@ -18,7 +18,7 @@ export type PostsType = {
 }
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPost: string
+    newPostText: string
 }
 export type MessagePageType = {
     messages: Array<MessageType>
@@ -63,7 +63,7 @@ let store: StoreType = {
                 {id: 1, message: "Hi, how are you???", likesCount: 15},
                 {id: 2, message: "1111", likesCount: 11}
             ],
-            newPost: ""
+            newPostText: ""
         },
         messagesPage: {
             messages: [

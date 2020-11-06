@@ -25,7 +25,7 @@ function MyPosts(props: MyPostsType) {
         let text = e.currentTarget.value
         props.onPostChange(text)
     }
-    return (
+      return (
         <div className={s.postBlock}>
             <h3>My Posts</h3>
             <div>

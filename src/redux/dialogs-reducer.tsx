@@ -1,4 +1,4 @@
-import {ActionType,  MessageType,} from "./store";
+import {ActionType, MessageType,} from "./store";
 
 let initislState = {
     messages: [
@@ -11,25 +11,24 @@ let initislState = {
     ],
     newMessageBody: "ManUtd"
 }
-const dialogsReducer = (state=initislState, action: ActionType) => {
-    switch (action.type){
+const dialogsReducer = (state = initislState, action: ActionType) => {
+    switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY": {
-            const stateCopy = {...state}
-            stateCopy.newMessageBody = action.newBody
+            const stateCopy = {...state, newMessageBody: action.newBody}
             return {...stateCopy}
-    }
-        case "ADD-NEW-MESSAGE": {
-            const stateCopy = {...state}
-        let newMessage: MessageType = {
-            id: 3,
-            message: state.newMessageBody
         }
-            stateCopy.messages.push(newMessage)
-            stateCopy.newMessageBody = ""
+        case "ADD-NEW-MESSAGE": {
+            let newMessage: MessageType = {
+                id: 3,
+                message: state.newMessageBody
+            }
+            const stateCopy = {...state, messages: [...state.messages, newMessage], newMessageBody: ""}
             return {...stateCopy}
+        }
+        default:
+            return state
     }
-        default: return state
-}}
+}
 export const changeNewMessageBodyAC = (newBody: string) =>
     ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
 export const addNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
