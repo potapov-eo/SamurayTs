@@ -1,7 +1,7 @@
 import React from 'react';
 import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
-
+import {followAC, setUsersAC, unFollowAC} from "./users-reducer";
 
 export type DialogType = {
     id: number
@@ -34,7 +34,6 @@ export type AppType = {
     addPost: () => void
     updateNewPostText: (newText: string) => void
 }
-
 export type StoreType = {
     _state: stateType
 
@@ -51,8 +50,10 @@ export type ChangeNewTextActionType = {
     type: "CHANGE-NEW-TEXT"
     newText: string
 }
+
 export type ActionType = (ReturnType<typeof addPostAC> | (ReturnType<typeof changeNewTextAC>) |
-    (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>))
+    (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>)
+    | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC>)
 
 let store: StoreType = {
     _state: {

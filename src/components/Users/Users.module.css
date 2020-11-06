@@ -1,8 +1,5 @@
 
-.header {
-    grid-area: h;
-    background-color: green;
-}
-.header img {
-    height: 30px
+.userPhoto {
+    width: 100px;
+    height: 100px;
 }
