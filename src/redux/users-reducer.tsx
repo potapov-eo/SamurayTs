@@ -28,12 +28,12 @@ export type usersType = { users: Array<userType> }
 let initialState = {
     users: [
 
-       /* {id: 77777777777, followed: true, name: "Bob", uniqueUrlName: "", photos: {small: "", large: ""}, status: ""}*/
+        /* {id: 77777777777, followed: true, name: "Bob", uniqueUrlName: "", photos: {small: "", large: ""}, status: ""}*/
 
     ]
 
 }
-export const userReducer = (state: initialStateType = initialState, action: ActionType): initialStateType=> {
+export const userReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case "UNFOLLOW" :
             return {
@@ -59,7 +59,7 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
             let stateCopy = {...state}
             const newUsers = [...action.users, ...stateCopy.users]
             stateCopy = {...stateCopy, users: newUsers}
-            return  stateCopy
+            return stateCopy
 
         }
         /*  ...state, users: [ ...state.users, ...action.users]*/
