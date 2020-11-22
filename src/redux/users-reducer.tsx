@@ -20,19 +20,21 @@ type GetUsersResponseType = {
 }
 export type initialStateType = {
     users: userType[]
-    pageSize:number
-    totalUsersCount:number
-    currentPage:number
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
 }
 
 export type usersType = { users: Array<userType> }
 
 
 let initialState = {
-    users: [ ],
-    pageSize:15,
-    totalUsersCount:100,
-    currentPage:5
+    users: [],
+    pageSize: 15,
+    totalUsersCount: 100,
+    currentPage: 5,
+    isFetching: true
 
 }
 export const userReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -74,6 +76,11 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
             stateCopy = {...stateCopy, totalUsersCount: action.totalCount}
             return stateCopy
         }
+        case "TOGGLE-IS-FETCHING" : {
+            let stateCopy = {...state}
+            stateCopy = {...stateCopy, isFetching: action.isFetching}
+            return stateCopy
+        }
 
         /*  ...state, users: [ ...state.users, ...action.users]*/
         default:
@@ -83,6 +90,7 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
 export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unFollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const)
 export const setUsersAC = (users: userType[]) => ({type: "SET-USERS", users} as const)
-export const setCurrentPageAC = (pageNumber:number) => ({type: "SET-CURRENT-PAGE", pageNumber} as const)
-export const setTotalUsersCountAC= (totalCount:number) => ({type: "SET-TOTAL-COUNT", totalCount} as const)
+export const setCurrentPageAC = (pageNumber: number) => ({type: "SET-CURRENT-PAGE", pageNumber} as const)
+export const setTotalUsersCountAC = (totalCount: number) => ({type: "SET-TOTAL-COUNT", totalCount} as const)
+export const setIsFetchingAC = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
 
