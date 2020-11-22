@@ -1,16 +1,28 @@
 
-import {followAC, setUsersAC, unFollowAC, userReducer, usersType} from "./users-reducer";
+import {
+    followAC,
+    initialStateType,
+    setCurrentPageAC, setTotalUsersCountAC,
+    setUsersAC,
+    unFollowAC,
+    userReducer,
+    usersType
+} from "./users-reducer";
 
 
 
-let initialState: usersType
+let initialState: initialStateType
 beforeEach(() => {
     initialState = {
         users: [
-            {id: 1, followed : true, fullName:"Fray", status: "I'm the boss", location: {city: "Minsk", country: "Belarus" },photoUrl : "v"},
-            {id: 2, followed : false, fullName:"Bender", status: "I'm new boss", location: {city: "Moscow", country: "Russia" },photoUrl : "v"},
-            {id: 3, followed : true, fullName:"Bob", status: "I'm only Bob", location: {city: "Bobruisk", country: "Belarus" },photoUrl : "v"}
-        ]
+            {id: 1, followed : true, uniqueUrlName:"1", name:"Fray", status: "I'm the boss", photos : {small:"", large:""}},
+            {id: 2, followed : false, uniqueUrlName:"1", name:"Bender", status: "I'm new boss", photos : {small:"", large:""}},
+            {id: 3, followed : true, uniqueUrlName:"1", name:"Bob", status: "I'm only Bob", photos : {small:"", large:""}}
+        ],
+        pageSize:5,
+        totalUsersCount:100,
+        currentPage:5
+
 }})
 
 test('FOLLOW user  should be correct', () => {
@@ -39,15 +51,38 @@ test('UNFOLLOW user should be correct', () => {
 });
 test('set users should be correct', () => {
 
-    const users = [{id: 4, followed : true, fullName:"JON", status: "I'm the boss", location: {city: "Minsk", country: "Belarus" },photoUrl : "v"},
-        {id: 5, followed : true, fullName:"DON", status: "I'm the boss", location: {city: "Minsk", country: "Belarus" },photoUrl : "v"}]
+    const users = [
+        {id: 1, followed : true, uniqueUrlName:"1", name:"Fray", status: "I'm the boss", photos : {small:"", large:""}},
+        {id: 2, followed : false, uniqueUrlName:"1", name:"Bender", status: "I'm new boss", photos : {small:"", large:""}}
+        ]
     const action = setUsersAC(users);
 
     const endState = userReducer(initialState, action)
 
 
-    expect(endState.users.length).toBe(5);
-    expect(endState.users[3].fullName).toBe("JON");
-    expect(endState.users[4].fullName).toBe("DON");
-    expect(endState.users[1].fullName).toBe("Bender");
+    expect(endState.users.length).toBe(2);
+    expect(endState.users[0].name).toBe("Fray");
+    expect(endState.users[1].name).toBe("Bender");
+
 });
+test('set currentPage should be correct', () => {
+
+   const pageNumber = 32
+    const action = setCurrentPageAC(pageNumber);
+
+    const endState = userReducer(initialState, action)
+
+
+    expect(endState.currentPage).toBe(32);
+   });
+test('set totalUsersCount should be correct', () => {
+
+    const totalCount = 11
+    const action = setTotalUsersCountAC(totalCount);
+
+    const endState = userReducer(initialState, action)
+
+
+    expect(endState.totalUsersCount).toBe(11);
+});
+

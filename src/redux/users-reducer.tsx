@@ -18,19 +18,21 @@ type GetUsersResponseType = {
     totalCount: number
     error: string | null
 }
-type initialStateType = {
+export type initialStateType = {
     users: userType[]
+    pageSize:number
+    totalUsersCount:number
+    currentPage:number
 }
 
 export type usersType = { users: Array<userType> }
 
 
 let initialState = {
-    users: [
-
-        /* {id: 77777777777, followed: true, name: "Bob", uniqueUrlName: "", photos: {small: "", large: ""}, status: ""}*/
-
-    ]
+    users: [ ],
+    pageSize:15,
+    totalUsersCount:100,
+    currentPage:5
 
 }
 export const userReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -57,11 +59,22 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
             }
         case "SET-USERS" : {
             let stateCopy = {...state}
-            const newUsers = [...action.users, ...stateCopy.users]
-            stateCopy = {...stateCopy, users: newUsers}
+
+            stateCopy = {...stateCopy, users: action.users}
             return stateCopy
 
         }
+        case "SET-CURRENT-PAGE" : {
+            let stateCopy = {...state}
+            stateCopy = {...stateCopy, currentPage: action.pageNumber}
+            return stateCopy
+        }
+        case "SET-TOTAL-COUNT" : {
+            let stateCopy = {...state}
+            stateCopy = {...stateCopy, totalUsersCount: action.totalCount}
+            return stateCopy
+        }
+
         /*  ...state, users: [ ...state.users, ...action.users]*/
         default:
             return state
@@ -70,4 +83,6 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
 export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unFollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const)
 export const setUsersAC = (users: userType[]) => ({type: "SET-USERS", users} as const)
+export const setCurrentPageAC = (pageNumber:number) => ({type: "SET-CURRENT-PAGE", pageNumber} as const)
+export const setTotalUsersCountAC= (totalCount:number) => ({type: "SET-TOTAL-COUNT", totalCount} as const)
 
