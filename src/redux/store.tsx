@@ -2,12 +2,12 @@ import React from 'react';
 import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
 import {
-    followAC,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unFollowAC
+    unFollo,
+    setCurrentPage,
+    setIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    follow
 } from "./users-reducer";
 
 export type DialogType = {
@@ -60,8 +60,8 @@ export type ChangeNewTextActionType = {
 
 export type ActionType = (ReturnType<typeof addPostAC> | (ReturnType<typeof changeNewTextAC>) |
     (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>)
-    | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> |
-    ReturnType<typeof setCurrentPageAC> | ReturnType<typeof setTotalUsersCountAC> | ReturnType<typeof setIsFetchingAC>)
+    | ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
+    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>)
 
 let store: StoreType = {
     _state: {

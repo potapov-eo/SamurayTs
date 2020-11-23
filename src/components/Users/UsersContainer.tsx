@@ -1,17 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import loading from "./../../accets/images/loading.svg"
 import {
-    followAC,
+    follow,
     initialStateType,
-    setCurrentPageAC, setIsFetchingAC, setTotalUsersCountAC,
-    setUsersAC,
-    unFollowAC,
-    usersType,
-    userType
+    setCurrentPage, setIsFetching, setTotalUsersCount,
+    setUsers,
+    unFollo,
+     userType
 } from "../../redux/users-reducer";
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
@@ -88,7 +85,7 @@ let mapStateToProps = (state: AppStateType): initialStateType => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsUsersType => {
+/*let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsUsersType => {
     return {
 
         unFollo: (userID: number) => {
@@ -105,8 +102,8 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsUsersType => {
         setTotalUsersCount: (totalCount: number) => dispatch(setTotalUsersCountAC(totalCount)),
         setIsFetching: (isFetching: boolean) => dispatch(setIsFetchingAC(isFetching))
     }
-}
-const UserContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+}*/
+export default connect(mapStateToProps,
+    {unFollo,follow,setUsers, setCurrentPage,setTotalUsersCount, setIsFetching})
+(UsersContainer)
 
-
-export default UserContainer
