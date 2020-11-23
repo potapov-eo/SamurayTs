@@ -21,21 +21,7 @@ export type mapDispatchToPropsUsersType = {
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
 }
-export type UsersAPIComponentType = {
-    currentPage: number
-    totalUsersCount: number
-    pageSize: number
-    users: Array<userType>
-    follow: (userID: number) => void
-    unFollo: (userID: number) => void
-    setUsers: (users: Array<userType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    isFetching: boolean
-    setIsFetching: (isFetching: boolean) => void
-
-}
-
+export type UsersAPIComponentType=mapDispatchToPropsUsersType &  initialStateType
 
 class UsersContainer extends React.Component<UsersAPIComponentType> {
 

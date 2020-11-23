@@ -2,15 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import {DialogsPropsType} from "./DialogsContainer";
 
-
-type DialogsType = {
-    newMessageBody: string
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    addNewMessage: () => void
-    onNewTextChange: (newMessage: string) => void
-}
 export type DialogType = {
     id: number
     name: string
@@ -21,7 +14,7 @@ export type MessageType = {
 }
 
 
-function Dialogs(props: DialogsType) {
+function Dialogs(props: DialogsPropsType) {
     let dialogElements = props.dialogs.map((d: DialogType) => <DialogItem name={d.name} id={d.id}/>)
     let messagesElements = props.messages.map((m: MessageType) => <Message message={m.message}/>)
 

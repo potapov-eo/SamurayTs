@@ -6,15 +6,16 @@ import {Dispatch} from "redux"
 import {AppStateType} from '../../redux/redux-store';
 
 
-export type mapStateToPropsDialogsType ={
+type mapStateToPropsDialogsType ={
     newMessageBody: string
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-export type mapDispatchToPropsDialogsType ={
+ type mapDispatchToPropsDialogsType ={
     addNewMessage: () => void
     onNewTextChange: (newMessage: string) => void
 }
+export type DialogsPropsType=mapStateToPropsDialogsType&mapDispatchToPropsDialogsType
 
     let mapStateToProps = (state: AppStateType):mapStateToPropsDialogsType => {
     return {
@@ -23,6 +24,7 @@ export type mapDispatchToPropsDialogsType ={
         newMessageBody: state.dialogsPage.newMessageBody,
     }
 }
+
 let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsDialogsType => {
     return {
         addNewMessage: () => {

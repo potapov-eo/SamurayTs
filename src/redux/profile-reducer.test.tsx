@@ -1,5 +1,5 @@
 
-import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
+import profileReducer, {addPost, changeNewText} from "./profile-reducer";
 import {PostsType} from '../components/Profile/MyPosts/MyPosts';
 import {profileType} from '../components/Profile/ProfileContainer';
 export type ProfilePageType = {
@@ -23,7 +23,7 @@ beforeEach(() => {
 test('add post should be correct', () => {
 
 
-    const action = addPostAC();
+    const action = addPost();
 
     const endState = profileReducer(initialState, action)
 
@@ -35,7 +35,7 @@ test('add post should be correct', () => {
 test('Changed new text should be correct', () => {
 
 
-    const action = changeNewTextAC("HELLO WORD");
+    const action = changeNewText("HELLO WORD");
 
     const endState = profileReducer(initialState, action)
 

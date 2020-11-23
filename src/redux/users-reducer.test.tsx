@@ -1,10 +1,10 @@
 
 import {
-    followAC,
+    follow,
     initialStateType,
-    setCurrentPageAC, setIsFetchingAC, setTotalUsersCountAC,
-    setUsersAC,
-    unFollowAC,
+    setCurrentPage, setIsFetching, setTotalUsersCount,
+    setUsers,
+    unFollo,
     userReducer,
     usersType
 } from "./users-reducer";
@@ -29,7 +29,7 @@ beforeEach(() => {
 test('FOLLOW user  should be correct', () => {
 
 
-    const action = followAC(2);
+    const action = follow(2);
 
     const endState = userReducer(initialState, action)
 
@@ -41,7 +41,7 @@ test('FOLLOW user  should be correct', () => {
 test('UNFOLLOW user should be correct', () => {
 
 
-    const action = unFollowAC(3);
+    const action = unFollo(3);
 
     const endState = userReducer(initialState, action)
 
@@ -56,7 +56,7 @@ test('set users should be correct', () => {
         {id: 1, followed : true, uniqueUrlName:"1", name:"Fray", status: "I'm the boss", photos : {small:"", large:""}},
         {id: 2, followed : false, uniqueUrlName:"1", name:"Bender", status: "I'm new boss", photos : {small:"", large:""}}
         ]
-    const action = setUsersAC(users);
+    const action = setUsers(users);
 
     const endState = userReducer(initialState, action)
 
@@ -69,7 +69,7 @@ test('set users should be correct', () => {
 test('set currentPage should be correct', () => {
 
    const pageNumber = 32
-    const action = setCurrentPageAC(pageNumber);
+    const action = setCurrentPage(pageNumber);
 
     const endState = userReducer(initialState, action)
 
@@ -79,7 +79,7 @@ test('set currentPage should be correct', () => {
 test('set totalUsersCount should be correct', () => {
 
     const totalCount = 11
-    const action = setTotalUsersCountAC(totalCount);
+    const action = setTotalUsersCount(totalCount);
 
     const endState = userReducer(initialState, action)
 
@@ -89,7 +89,7 @@ test('set totalUsersCount should be correct', () => {
 test('set isFetching should be correct', () => {
 
     const isFetching = true
-    const action = setIsFetchingAC(isFetching);
+    const action = setIsFetching(isFetching);
 
     const endState = userReducer(initialState, action)
 

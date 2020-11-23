@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from "redux"
-import profileReducer, {addPostAC, changeNewTextAC, setUserProfile} from "./profile-reducer";
+import profileReducer, {addPost, changeNewText, setUserProfile} from "./profile-reducer";
 import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
 import {
  follow,
@@ -12,7 +12,7 @@ import {
 } from "./users-reducer";
 
 
-export type ActionType = (ReturnType<typeof addPostAC> | (ReturnType<typeof changeNewTextAC>) |
+export type ActionType = (ReturnType<typeof addPost> | (ReturnType<typeof changeNewText>) |
     (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>)
     | ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|ReturnType<typeof setUserProfile>)
