@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {DialogType, MessageType} from "../../redux/store";
+
 
 type DialogsType = {
     newMessageBody: string
@@ -10,6 +10,14 @@ type DialogsType = {
     messages: Array<MessageType>
     addNewMessage: () => void
     onNewTextChange: (newMessage: string) => void
+}
+export type DialogType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
 }
 
 

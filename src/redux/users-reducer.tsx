@@ -1,4 +1,4 @@
-import {ActionType} from "./store";
+import {ActionType} from './redux-store';
 import * as axios from 'axios'
 
 export type photosType = {
@@ -24,6 +24,7 @@ export type initialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+
 }
 
 export type usersType = { users: Array<userType> }

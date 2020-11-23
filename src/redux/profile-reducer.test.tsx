@@ -1,6 +1,12 @@
-import {ProfilePageType} from "./store";
-import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 
+import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
+import {PostsType} from '../components/Profile/MyPosts/MyPosts';
+import {profileType} from '../components/Profile/ProfileContainer';
+export type ProfilePageType = {
+    posts: Array<PostsType>
+    newPostText: string
+    profile:any
+}
 let initialState: ProfilePageType
 beforeEach(() => {
     initialState = {
@@ -10,7 +16,8 @@ beforeEach(() => {
             {id: 1, message: "Hi, how are you???", likesCount: 15},
             {id: 2, message: "1111", likesCount: 11}
         ],
-        newPostText: "MU"
+        newPostText: "MU",
+        profile:{}
     }
 })
 test('add post should be correct', () => {

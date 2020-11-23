@@ -1,5 +1,7 @@
-import {ActionType, PostsType} from "./store";
 
+import {profileType} from '../components/Profile/ProfileContainer';
+import {ActionType} from './redux-store';
+import {PostsType} from '../components/Profile/MyPosts/MyPosts';
 let initialState = {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 12},
@@ -7,7 +9,9 @@ let initialState = {
         {id: 1, message: "Hi, how are you???", likesCount: 15},
         {id: 2, message: "1111", likesCount: 11}
     ],
-    newPostText: "MU"
+    newPostText: "MU",
+    profile: {}
+
 }
 const profileReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
@@ -21,12 +25,20 @@ const profileReducer = (state = initialState, action: ActionType) => {
 
         case "CHANGE-NEW-TEXT":
             return {...state, newPostText: action.newText}
+        case "SET-USER-PROFILE":
+            return {...state, profile: action.profile}
+
         default:
             return state
     }
+}
+export type ProfileContainerType = {
+
+
 }
 
 export const addPostAC = () => ({type: "ADD-POST"} as const)
 export const changeNewTextAC = (newText: string) =>
     ({type: "CHANGE-NEW-TEXT", newText} as const)
+export const setUserProfile = (profile:profileType) => ({type: "SET-USER-PROFILE",profile} as const)
 export default profileReducer
