@@ -10,17 +10,20 @@ import {
  unFollo,
  userReducer
 } from "./users-reducer";
+import authReducer, {setAuthUserData} from './auth-reducer';
 
 
 export type ActionType = (ReturnType<typeof addPost> | (ReturnType<typeof changeNewText>) |
     (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>)
     | ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
-    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|ReturnType<typeof setUserProfile>)
+    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|
+    ReturnType<typeof setAuthUserData>|ReturnType<typeof setUserProfile>)
 
 let reducers = combineReducers({
  usersPage:userReducer,
  profileReduser:profileReducer,
- dialogsPage:dialogsReducer
+ dialogsPage:dialogsReducer,
+ auth:authReducer
 })
 
 
