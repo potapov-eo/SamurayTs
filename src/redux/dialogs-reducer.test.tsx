@@ -1,6 +1,11 @@
-import {MessagePageType} from "./store";
-import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
 
+import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
+import {DialogType, MessageType} from "../components/Dialogs/Dialogs";
+export type MessagePageType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+    newMessageBody: string
+}
 let initialState:MessagePageType
 beforeEach(() => {
     initialState = {

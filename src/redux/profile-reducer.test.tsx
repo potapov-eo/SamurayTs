@@ -1,7 +1,5 @@
-
 import profileReducer, {addPost, changeNewText} from "./profile-reducer";
 import {PostsType} from '../components/Profile/MyPosts/MyPosts';
-import {profileType} from '../components/Profile/ProfileContainer';
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string

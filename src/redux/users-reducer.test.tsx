@@ -1,12 +1,10 @@
-
 import {
     follow,
     initialStateType,
     setCurrentPage, setIsFetching, setTotalUsersCount,
     setUsers,
     unFollo,
-    userReducer,
-    usersType
+    userReducer
 } from "./users-reducer";
 
 
