@@ -1,5 +1,4 @@
 import {ActionType} from './redux-store';
-import * as axios from 'axios'
 
 export type photosType = {
     small: null | string
@@ -24,6 +23,7 @@ export type initialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress:Array<number>
 
 }
 
@@ -35,7 +35,8 @@ let initialState = {
     pageSize: 15,
     totalUsersCount: 100,
     currentPage: 5,
-    isFetching: true
+    isFetching: true,
+    followingInProgress:[]
 
 }
 export const userReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -82,10 +83,20 @@ export const userReducer = (state: initialStateType = initialState, action: Acti
             stateCopy = {...stateCopy, isFetching: action.isFetching}
             return stateCopy
         }
+        case "TOGGLE-IS-FOLLOWING-PROGRESS" : {
+
+            let stateCopy = {...state}
+            stateCopy = {...stateCopy, followingInProgress:  action.isFetching
+                    ? [...state.followingInProgress , action.id]
+                    : state.followingInProgress.filter(id=>id!==action.id)}
+            return stateCopy
+
+        }
 
         /*  ...state, users: [ ...state.users, ...action.users]*/
         default:
             return state
+
     }
 }
 export const follow = (userId: number) => ({type: "FOLLOW", userId} as const)
@@ -94,4 +105,5 @@ export const setUsers = (users: userType[]) => ({type: "SET-USERS", users} as co
 export const setCurrentPage = (pageNumber: number) => ({type: "SET-CURRENT-PAGE", pageNumber} as const)
 export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-COUNT", totalCount} as const)
 export const setIsFetching = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
+export const setFollowingInProgress = (id: number, isFetching:boolean) => ({type: "TOGGLE-IS-FOLLOWING-PROGRESS", id, isFetching} as const)
 

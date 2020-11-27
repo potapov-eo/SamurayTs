@@ -3,7 +3,7 @@ import profileReducer, {addPost, changeNewText, setUserProfile} from "./profile-
 import dialogsReducer, {addNewMessageAC, changeNewMessageBodyAC} from "./dialogs-reducer";
 import {
  follow,
- setCurrentPage,
+ setCurrentPage, setFollowingInProgress,
  setIsFetching,
  setTotalUsersCount,
  setUsers,
@@ -17,7 +17,7 @@ export type ActionType = (ReturnType<typeof addPost> | (ReturnType<typeof change
     (ReturnType<typeof changeNewMessageBodyAC> | ReturnType<typeof addNewMessageAC>)
     | ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|
-    ReturnType<typeof setAuthUserData>|ReturnType<typeof setUserProfile>)
+    ReturnType<typeof setAuthUserData>|ReturnType<typeof setUserProfile>|ReturnType<typeof setFollowingInProgress>)
 
 let reducers = combineReducers({
  usersPage:userReducer,

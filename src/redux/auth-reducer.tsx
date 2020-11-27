@@ -1,5 +1,4 @@
 import {ActionType} from './redux-store';
-import {MessageType} from '../components/Dialogs/Dialogs';
 
 export type initialStateType = {
     userId: number

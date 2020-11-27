@@ -11,7 +11,7 @@ type HeaderPropsType = {
 function Header(props: HeaderPropsType) {
     return (
         <header className={s.header}>
-            <img src="https://images-na.ssl-images-amazon.com/images/I/71MV0SKtt3L._SX425_.jpg"/>
+            <img alt="headerPick" src="https://images-na.ssl-images-amazon.com/images/I/71MV0SKtt3L._SX425_.jpg"/>
             <div className={s.loginBlock}>
                 {props.isAuth
                     ? props.login

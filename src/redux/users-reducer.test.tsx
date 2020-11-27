@@ -1,7 +1,7 @@
 import {
     follow,
     initialStateType,
-    setCurrentPage, setIsFetching, setTotalUsersCount,
+    setCurrentPage, setFollowingInProgress, setIsFetching, setTotalUsersCount,
     setUsers,
     unFollo,
     userReducer
@@ -20,8 +20,8 @@ beforeEach(() => {
         pageSize:5,
         totalUsersCount:100,
         currentPage:5,
-        isFetching:false
-
+        isFetching:false,
+        followingInProgress:[1,2,8]
 }})
 
 test('FOLLOW user  should be correct', () => {
@@ -94,4 +94,14 @@ test('set isFetching should be correct', () => {
 
     expect(endState.isFetching).toBe(true);
 });
+test('set followingInProgress should be correct', () => {
 
+    const id = 5
+    const isFetching=true
+    const action = setFollowingInProgress(id,isFetching);
+
+    const endState = userReducer(initialState, action)
+
+
+    expect(endState.followingInProgress).toEqual([1,2,8,5]);
+});
