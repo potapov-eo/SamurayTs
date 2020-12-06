@@ -24,6 +24,9 @@ function Navbar() {
             <div className={s.item}>
                 <NavLink to="/setting" activeClassName={s.activeLink}>Setting</NavLink>
             </div>
+            <div className={s.item}>
+                <NavLink to="/login" activeClassName={s.activeLink}>LOGIN</NavLink>
+            </div>
         </nav>
     )
 }

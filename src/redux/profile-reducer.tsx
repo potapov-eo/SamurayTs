@@ -1,7 +1,9 @@
 
-import {ActionType} from "./redux-store";
+import {ActionType, AppStateType} from "./redux-store";
 import {PostsType} from "../components/Profile/MyPosts/MyPosts";
 import {profileType} from "../components/Profile/ProfileContainer";
+import {UserAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
 let initialState = {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 12},
@@ -42,3 +44,8 @@ export const changeNewText = (newText: string) =>
     ({type: "CHANGE-NEW-TEXT", newText} as const)
 export const setUserProfile = (profile:profileType) => ({type: "SET-USER-PROFILE",profile} as const)
 export default profileReducer
+export const getUserProfileThunk = (userId:string):ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch:any) =>{
+    UserAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
+}

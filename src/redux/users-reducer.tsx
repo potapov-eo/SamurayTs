@@ -1,4 +1,8 @@
-import {ActionType} from './redux-store';
+import {ActionType, AppStateType} from './redux-store';
+import {AuthAPI, UserAPI} from "../api/api";
+import {setAuthUserData} from "./auth-reducer";
+import {setUserProfile} from "./profile-reducer";
+import {ThunkAction} from "redux-thunk";
 
 export type photosType = {
     small: null | string
@@ -106,4 +110,33 @@ export const setCurrentPage = (pageNumber: number) => ({type: "SET-CURRENT-PAGE"
 export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-COUNT", totalCount} as const)
 export const setIsFetching = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
 export const setFollowingInProgress = (id: number, isFetching:boolean) => ({type: "TOGGLE-IS-FOLLOWING-PROGRESS", id, isFetching} as const)
+
+export const getUsers= (currentPage:number, pageSize:number):ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch:any) =>{
+    dispatch(setIsFetching(true))
+      UserAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setIsFetching(false))
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+    })
+}
+export const followThunk = (userId:number):ThunkAction<void, AppStateType, unknown, ActionType> =>{
+    return (dispatch:any) =>{
+    dispatch(setFollowingInProgress(userId, true))
+    UserAPI.follow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(follow(userId))
+        }
+        dispatch(setFollowingInProgress(userId, false))
+    })
+}}
+export const unfollowThunk = (userId:number):ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch:any) =>{
+    dispatch(setFollowingInProgress(userId, true))
+
+    UserAPI.unfollow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(unFollo(userId))
+        }
+        dispatch(setFollowingInProgress(userId, false))
+    })
+}
 

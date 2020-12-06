@@ -10,13 +10,24 @@ export const UserAPI={
         return  instance.get
         (`users?page=${currentPage}&count=${pageSize}`,
             {withCredentials: true}).then(response => response.data)
+    },
+    unfollow (id:number)  {
+        return  instance.delete(`follow/${id}`).then(response => response.data)
+    },
+    follow  (id:number)  {
+        return  instance.post(`follow/${id}`).then(response => response.data)
+    },
+
+    getProfile(userId:string) {
+        return instance.get(`profile/` + userId)
     }
 
 }
+export const AuthAPI={
 
-export const deleteeUsers = (id:number) => {
-    return  instance.delete(`follow/${id}`).then(response => response.data)
+    me() {
+        return instance.get(`auth/me`,)
+    },
+
 }
-export const postUsers = (id:number) => {
-    return  instance.post(`follow/${id}`).then(response => response.data)
-}
+
