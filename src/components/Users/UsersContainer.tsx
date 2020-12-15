@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
@@ -9,6 +9,10 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
+import {compose} from "redux";
+import {getUserProfileThunk, setUserProfile} from "../../redux/profile-reducer";
+import {withRouter} from "react-router";
+import {withAuthRedirect} from "../../hoc/withAythRedirect";
 
 
 export type mapDispatchToPropsUsersType = {
@@ -64,10 +68,11 @@ let mapStateToProps = (state: AppStateType): initialStateType => {
     }
 }
 
-export default connect(mapStateToProps,
-    {
-         setCurrentPage,
+export default compose<ComponentType>(
+    connect(mapStateToProps, {
+        setCurrentPage,
         getUsers, unfollowThunk, followThunk
-    })
-(UsersContainer)
+    }),
+   withAuthRedirect
+)(UsersContainer)
 

@@ -14,14 +14,13 @@ import Login from "./components/Login/Login";
 
 
 function App() {
-
     return (
         <BrowserRouter>
             <div className="App-wrapper">
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
                     <Route path='/news' render={() => <News/>}/>

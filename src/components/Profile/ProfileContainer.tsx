@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
@@ -7,6 +7,8 @@ import {withRouter,RouteComponentProps} from 'react-router';
 import {getUserProfileThunk} from "../../redux/profile-reducer";
 import {Redirect} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAythRedirect";
+import {compose} from "redux";
+import Dialogs from "../Dialogs/Dialogs";
 
 export type profileType = {
     aboutMe:string
@@ -65,13 +67,16 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-let AuthRedirectComponent=withAuthRedirect(ProfileContainer)
+
 let  mapStateToProps = (state: AppStateType):mapStateToPropsProfileContainerType => {
     return {
         profile:state.profileReduser.profile
     }
 }
 
-// @ts-ignore
-let withURLDataContainerComponent=withRouter(AuthRedirectComponent)
-export default connect(mapStateToProps,{setUserProfile, getUserProfileThunk}) (withURLDataContainerComponent)
+
+export default compose<ComponentType>(
+    connect(mapStateToProps, {setUserProfile, getUserProfileThunk}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)
