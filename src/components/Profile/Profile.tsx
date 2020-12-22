@@ -4,7 +4,6 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileContainerPropsType} from './ProfileContainer';
 
 
-
 function Profile(props:ProfileContainerPropsType) {
     return (
         <div>

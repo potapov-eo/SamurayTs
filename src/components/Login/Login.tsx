@@ -1,16 +1,24 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLength15, RenderInputField, required} from "../../Utilits/ValidatorsForm/Validators";
 
-const LoginForm = (props: any) => {
+type LoginFormDataType={
+    Login: string
+    Password:string
+    rememberMe:boolean
+}
+const LoginForm:React.FC<InjectedFormProps<LoginFormDataType>> = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
 
             <div>
-                <Field placeholder={"Login"} name={"Login"} component={"input"}/>
+                <Field placeholder={"Login"} name={"Login"} component={RenderInputField}
+                       validate={[ maxLength15, required ]}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={"input"}/>
+                <Field placeholder={"Password"} name={"password"} component={RenderInputField}
+                       validate={[ maxLength15, required ]}/>
             </div>
             <div>
                 <Field component={"input"} name={"rememberMe"} type={"checkbox"}/>remember me
@@ -22,10 +30,10 @@ const LoginForm = (props: any) => {
     )
 }
 
-const LoginReduxForm = reduxForm({form: "login"})(LoginForm)
+const LoginReduxForm = reduxForm<LoginFormDataType>({form: "login"})(LoginForm )
 
 const Login = () => {
-const onSubmit=(formData:any)=>{
+const onSubmit=(formData:LoginFormDataType)=>{
     console.log(formData)
 }
     return <div>

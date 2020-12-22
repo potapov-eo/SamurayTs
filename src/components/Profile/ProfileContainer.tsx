@@ -2,13 +2,10 @@ import React, {ComponentType} from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {getStatusThunk, setUserProfile, updateStatusThunk} from "../../redux/profile-reducer";
-import {withRouter,RouteComponentProps} from 'react-router';
-import {getUserProfileThunk} from "../../redux/profile-reducer";
-import {Redirect} from "react-router-dom";
+import {getStatusThunk, getUserProfileThunk, setUserProfile, updateStatusThunk} from "../../redux/profile-reducer";
+import {RouteComponentProps, withRouter} from 'react-router';
 import {withAuthRedirect} from "../../hoc/withAythRedirect";
 import {compose} from "redux";
-import Dialogs from "../Dialogs/Dialogs";
 
 export type profileType = {
     aboutMe:string

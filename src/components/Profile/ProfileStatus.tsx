@@ -7,14 +7,17 @@ export type ProfileStatusPropsType = {
     status: string
     updateStatusThunk: (status: string) => void
 }
+export type ProfileStatusStateType = {
+    editMode: boolean
+    status: string
+}
 
-class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
-
+class ProfileStatus extends React.Component<ProfileStatusPropsType,ProfileStatusStateType> {
     state = {
         editMode: false,
-        status: this.props.status
-    }
+        status: this.props.status,
+        }
     activateEditMode = () => {
         this.setState({editMode: true})
     }
@@ -25,7 +28,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     onStatusChange=(e: ChangeEvent<HTMLInputElement>)=>{
                      this.setState({status:e.currentTarget.value})
     }
-    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: ProfileStatusStateType, snapshot?: any) {
         if(prevProps.status !== this.props.status){
             this.setState({
                 status:this.props.status

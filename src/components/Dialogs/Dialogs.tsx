@@ -1,9 +1,11 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsPropsType} from "./DialogsContainer";
-import { Redirect } from "react-router-dom"
+import {reduxForm} from "redux-form";
+import {AddMessageForm, AddMessageFormDataType} from "./AddMessageForm";
+
 export type DialogType = {
     id: number
     name: string
@@ -18,15 +20,10 @@ function Dialogs(props: DialogsPropsType) {
     let dialogElements = props.dialogs.map((d: DialogType) => <DialogItem name={d.name} id={d.id}/>)
     let messagesElements = props.messages.map((m: MessageType) => <Message message={m.message}/>)
 
-    let addNewMessage = () => {
-        props.addNewMessage()
+    const onSubmit=(formData:AddMessageFormDataType)=>{
+        console.log(formData)
+        props.addNewMessage(formData.NewMessage)
     }
-
-    const onNewTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newMessage = e.currentTarget.value
-        props.onNewTextChange(newMessage)
-    }
-
 
     return (
         <div className={s.dialogs}>
@@ -35,15 +32,11 @@ function Dialogs(props: DialogsPropsType) {
             </div>
             <div className={s.messeges}>
                 {messagesElements}
-                <div>
-                    <textarea onChange={onNewTextChange} value={props.newMessageBody}/>
-                </div>
-                <div>
-                    <button onClick={addNewMessage}>ADD POST</button>
-                </div>
+                <AddMessageReduxForm onSubmit={onSubmit}/>
             </div>
         </div>
     )
 }
 
+const AddMessageReduxForm = reduxForm<AddMessageFormDataType>({form: "NewMessage"})(AddMessageForm )
 export default Dialogs

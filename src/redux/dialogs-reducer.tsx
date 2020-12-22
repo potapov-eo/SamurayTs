@@ -11,18 +11,14 @@ let initislState = {
         {id: 1, name: "Frai"},
         {id: 2, name: "Bender"}
     ],
-    newMessageBody: "ManUtd"
 }
 const dialogsReducer = (state = initislState, action: ActionType) => {
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-BODY": {
-            const stateCopy = {...state, newMessageBody: action.newBody}
-            return {...stateCopy}
-        }
+
         case "ADD-NEW-MESSAGE": {
             let newMessage: MessageType = {
                 id: 3,
-                message: state.newMessageBody
+                message: action.NewMessage
             }
             const stateCopy = {...state, messages: [...state.messages, newMessage], newMessageBody: ""}
             return {...stateCopy}
@@ -33,5 +29,5 @@ const dialogsReducer = (state = initislState, action: ActionType) => {
 }
 export const changeNewMessageBodyAC = (newBody: string) =>
     ({type: "UPDATE-NEW-MESSAGE-BODY", newBody} as const)
-export const addNewMessageAC = () => ({type: "ADD-NEW-MESSAGE"} as const)
+export const addNewMessageAC = (NewMessage: string) => ({type: "ADD-NEW-MESSAGE", NewMessage} as const)
 export default dialogsReducer
