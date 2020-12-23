@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {setAuthUserData} from '../../redux/auth-reducer';
+import {logOutThunk, setAuthUserData} from '../../redux/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {getAuthUserDataThunk} from "../../redux/auth-reducer";
 
@@ -11,6 +11,7 @@ type HeaderContainerPropsType = {
     isAuth: boolean,
     login: string|null,
     getAuthUserDataThunk:()=>void
+    logOutThunk:()=>void
 }
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
@@ -29,4 +30,4 @@ const mstp = (state: AppStateType) => {
     }
 }
 
-export default connect(mstp, {setAuthUserData,getAuthUserDataThunk})(HeaderContainer)
+export default connect(mstp, {setAuthUserData,getAuthUserDataThunk,logOutThunk})(HeaderContainer)

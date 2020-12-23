@@ -6,6 +6,7 @@ type HeaderPropsType = {
     isAuth: boolean,
     login: string|null,
     setAuthUserData: (userId: number|null, email: string|null, login: string|null, isAuth:boolean) => void
+    logOutThunk:()=>void
 }
 
 function Header(props: HeaderPropsType) {
@@ -14,7 +15,7 @@ function Header(props: HeaderPropsType) {
             <img alt="headerPick" src="https://images-na.ssl-images-amazon.com/images/I/71MV0SKtt3L._SX425_.jpg"/>
             <div className={s.loginBlock}>
                 {props.isAuth
-                    ? props.login
+                    ?<div> {props.login} - <button onClick={props.logOutThunk}>Log out</button>      </div>
                     : <NavLink to={"/login"}> LOGIN </NavLink>}
             </div>
         </header>

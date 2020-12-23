@@ -24,8 +24,7 @@ const authReducer = (state = initialState, action: ActionType): initialStateType
             return {
                 ...state,
                 ...action.payload,
-                isAuth: true
-            }
+                            }
         }
 
         default:
@@ -61,7 +60,7 @@ export const logOutThunk = ():ThunkAction<void, AppStateType, unknown, ActionTyp
     AuthAPI.logOut()
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(0, "", "",true))
+                dispatch(setAuthUserData(0, "", "",false))
             }
         })
 }
