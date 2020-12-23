@@ -1,9 +1,10 @@
-import profileReducer, {addPost, changeNewText} from "./profile-reducer";
+import profileReducer, {addPost} from "./profile-reducer";
 import {PostsType} from '../components/Profile/MyPosts/MyPosts';
+
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
     profile:any
+    status:string
 }
 let initialState: ProfilePageType
 beforeEach(() => {
@@ -14,30 +15,19 @@ beforeEach(() => {
             {id: 1, message: "Hi, how are you???", likesCount: 15},
             {id: 2, message: "1111", likesCount: 11}
         ],
-        newPostText: "MU",
-        profile:{}
+       profile:{},
+        status: ""
     }
 })
 test('add post should be correct', () => {
 
-
-    const action = addPost();
+const newPost="yo"
+    const action = addPost(newPost);
 
     const endState = profileReducer(initialState, action)
 
 
     expect(endState.posts.length).toBe(5);
     expect(endState.posts[4].likesCount).toBe(0);
-    expect(endState.newPostText).toBe("");
-});
-test('Changed new text should be correct', () => {
 
-
-    const action = changeNewText("HELLO WORD");
-
-    const endState = profileReducer(initialState, action)
-
-
-
-    expect(endState.newPostText).toBe("HELLO WORD");
 });

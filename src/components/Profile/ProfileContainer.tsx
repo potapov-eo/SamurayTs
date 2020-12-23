@@ -8,7 +8,7 @@ import {withAuthRedirect} from "../../hoc/withAythRedirect";
 import {compose} from "redux";
 
 export type profileType = {
-    aboutMe:string
+
     contacts:{
         facebook:string | null
         website: string | null
@@ -24,8 +24,8 @@ export type profileType = {
     fullName:string
     userId:number
     photos:{
-        small:string
-        large:string
+        small:string | null
+        large:string | null
     }
 
 }

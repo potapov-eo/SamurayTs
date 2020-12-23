@@ -1,41 +1,70 @@
 import axios from 'axios';
+import {GetUsersResponseType, photosType} from "../redux/users-reducer";
+import {ProfileResponseContactsType} from "../Types/Types";
 
 const instance = axios.create({
-    baseURL:"https://social-network.samuraijs.com/api/1.0/",
+    baseURL: "https://social-network.samuraijs.com/api/1.0/",
     withCredentials: true,
-    headers: {"API-KEY":"b3ca8020-1484-4395-b201-af81d226c6c0"}
-    })
-export const UserAPI={
-    getUsers(currentPage:number, pageSize:number){
-        return  instance.get
+    headers: {"API-KEY": "b3ca8020-1484-4395-b201-af81d226c6c0"}
+})
+
+type ResponseType<D={}> ={
+    resultCode: number
+    messages: Array<string>,
+    data: D
+}
+type authResponseDataType={
+    id: number
+    email:string
+    login:string
+}
+
+type ProfileResponseType={
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ProfileResponseContactsType
+    photos: photosType
+   }
+export const UserAPI = {
+    getUsers(currentPage: number, pageSize: number) {
+        return instance.get<GetUsersResponseType>
         (`users?page=${currentPage}&count=${pageSize}`,
             {withCredentials: true}).then(response => response.data)
     },
-    unfollow (id:number)  {
-        return  instance.delete(`follow/${id}`).then(response => response.data)
+    unfollow(id: number) {
+        return instance.delete<ResponseType>(`follow/${id}`).then(response => response.data)
     },
-    follow  (id:number)  {
-        return  instance.post(`follow/${id}`).then(response => response.data)
+    follow(id: number) {
+        return instance.post<ResponseType>(`follow/${id}`).then(response => response.data)
     },
 
 
 }
-export const AuthAPI={
+export const AuthAPI = {
 
     me() {
-        return instance.get(`auth/me`,)
+        return instance.get<ResponseType<authResponseDataType>>(`auth/me`)
     },
+    login(email: string, password: string, rememberMe: boolean=false) {
+        return instance.post<ResponseType<{id:number}>>(`auth/login/`, {email, password, rememberMe})
+    },
+    logOut() {
+        return instance.delete<ResponseType>(`auth/login/`)
+    }
 
 }
-export const profileAPI={
-       getProfile(userId:string) {
-        return instance.get(`profile/` + userId)
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get<ProfileResponseType>(`profile/` + userId)
     },
-    getStatus(userId:string) {
+    getStatus(userId: string) {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(status: string) {
-        return instance.put(`profile/status/`,{status:status} )
+        return instance.put<ResponseType>(`profile/status/`, {status: status})
     },
+
 }
 

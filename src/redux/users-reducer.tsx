@@ -1,7 +1,5 @@
 import {ActionType, AppStateType} from './redux-store';
-import {AuthAPI, UserAPI} from "../api/api";
-import {setAuthUserData} from "./auth-reducer";
-import {setUserProfile} from "./profile-reducer";
+import {UserAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 
 export type photosType = {
@@ -16,7 +14,7 @@ export type userType = {
     status: null | string
     followed: boolean
 }
-type GetUsersResponseType = {
+export type GetUsersResponseType = {
     items: userType[]
     totalCount: number
     error: string | null

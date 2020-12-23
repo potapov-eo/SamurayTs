@@ -7,9 +7,9 @@ import {getAuthUserDataThunk} from "../../redux/auth-reducer";
 
 
 type HeaderContainerPropsType = {
-    setAuthUserData: (userId: number, email: string, login: string) => void,
+    setAuthUserData: (userId: number|null, email: string|null, login: string|null, isAuth:boolean) => void,
     isAuth: boolean,
-    login: string,
+    login: string|null,
     getAuthUserDataThunk:()=>void
 }
 
@@ -28,4 +28,5 @@ const mstp = (state: AppStateType) => {
         login: state.auth.login
     }
 }
+
 export default connect(mstp, {setAuthUserData,getAuthUserDataThunk})(HeaderContainer)
