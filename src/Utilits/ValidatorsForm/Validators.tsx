@@ -18,8 +18,17 @@ export const aol = (value:string) =>
     value && /.+@aol\.com/.test(value) ?
         'Really? You still use AOL for your email?' : undefined
 
-// @ts-ignore
-export const RenderTextField = ({ input, label, type, meta: { touched, error, warning } }) => {
+type RenderInputFieldPropsType={
+    input:string,
+    label:string,
+    type:string,
+    meta:{
+        touched:boolean,
+        error:string,
+        warning:string
+    }
+}
+export const RenderTextField = ({ input, label, type, meta: { touched, error, warning } }:RenderInputFieldPropsType) => {
 
     const hasError = touched && error
     return (
@@ -32,8 +41,8 @@ export const RenderTextField = ({ input, label, type, meta: { touched, error, wa
         </>
 )
 }
-// @ts-ignore
-export const RenderInputField = ({ input, label, type, meta: { touched, error, warning } }) => {
+
+export const RenderInputField = ({ input, label, type, meta: { touched, error, warning } }:RenderInputFieldPropsType) => {
 
     const hasError = touched && error
     return (
