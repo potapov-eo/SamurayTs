@@ -1,5 +1,6 @@
-import {ActionType} from './redux-store';
+
 import {MessageType} from '../components/Dialogs/Dialogs';
+import {ActionType} from "../Types/Types";
 
 
 let initislState = {

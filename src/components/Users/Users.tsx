@@ -1,11 +1,8 @@
 import React from 'react';
 import styles from "./Users.module.css";
 import userPhoto from "../../accets/images/2322.png";
-import {followThunk, unfollowThunk, userType} from "../../redux/users-reducer";
 import {NavLink} from 'react-router-dom';
-
-
-
+import {userType} from "../../Types/Types";
 
 type UsersPropsType = {
     totalUsersCount: number

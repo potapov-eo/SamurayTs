@@ -1,19 +1,9 @@
-import {ActionType, AppStateType} from './redux-store';
+import {AppStateType} from './redux-store';
 import {UserAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
+import {ActionType, userType} from "../Types/Types";
 
-export type photosType = {
-    small: null | string
-    large: null | string
-}
-export type userType = {
-    name: string
-    id: number
-    uniqueUrlName: null | string
-    photos: photosType
-    status: null | string
-    followed: boolean
-}
+
 export type GetUsersResponseType = {
     items: userType[]
     totalCount: number
@@ -26,12 +16,7 @@ export type initialStateType = {
     currentPage: number
     isFetching: boolean
     followingInProgress:Array<number>
-
 }
-
-export type usersType = { users: Array<userType> }
-
-
 let initialState = {
     users: [],
     pageSize: 15,

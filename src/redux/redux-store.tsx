@@ -1,25 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux"
-import profileReducer, {addPost, setStatus, setUserProfile} from "./profile-reducer";
-import dialogsReducer, {addNewMessageAC,} from "./dialogs-reducer";
-import {
- follow,
- setCurrentPage,
- setFollowingInProgress,
- setIsFetching,
- setTotalUsersCount,
- setUsers,
- unFollo,
- userReducer
-} from "./users-reducer";
-import authReducer, {setAuthUserData} from './auth-reducer';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import {userReducer} from "./users-reducer";
+import authReducer from './auth-reducer';
 import thunk from 'redux-thunk';
 import {reducer as formReducer} from "redux-form";
 
-export type ActionType = (ReturnType<typeof addPost> |
-    ReturnType<typeof addNewMessageAC>| ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
-    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|
-    ReturnType<typeof setAuthUserData>|ReturnType<typeof setUserProfile>|ReturnType<typeof setFollowingInProgress>|
-    ReturnType<typeof setStatus>)
 
 let reducers = combineReducers({
  usersPage:userReducer,

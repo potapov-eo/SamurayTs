@@ -1,9 +1,9 @@
-import {ActionType, AppStateType} from "./redux-store";
+import { AppStateType} from "./redux-store";
 import {PostsType} from "../components/Profile/MyPosts/MyPosts";
-import {profileType} from "../components/Profile/ProfileContainer";
 import {profileAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "redux";
+import {ActionType, profileType} from "../Types/Types";
 
 let initialState = {
     posts: [

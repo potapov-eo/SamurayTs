@@ -1,11 +1,17 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLength15, RenderInputField, required} from "../../Utilits/ValidatorsForm/Validators";
+import {connect} from "react-redux";
+import {loginThunk} from "../../redux/auth-reducer";
+import {profileType} from "../../Types/Types";
 
 type LoginFormDataType={
     Login: string
     Password:string
     rememberMe:boolean
+}
+type mapDispatchToPropsProfileContainerType={
+    loginThunk:()=>void
 }
 const LoginForm:React.FC<InjectedFormProps<LoginFormDataType>> = (props) => {
 
@@ -42,4 +48,4 @@ const onSubmit=(formData:LoginFormDataType)=>{
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
-export default Login;
+export default connect(null, {loginThunk})(Login);
