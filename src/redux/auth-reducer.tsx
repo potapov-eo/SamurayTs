@@ -40,7 +40,6 @@ export const setAuthUserData = (userId: number|null, email: string|null, login: 
 
 
 export const getAuthUserDataThunk = ():ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch,getState) =>{
-
     AuthAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -50,11 +49,10 @@ export const getAuthUserDataThunk = ():ThunkAction<void, AppStateType, unknown, 
         })
 }
 export const loginThunk = (email:string, password:string, rememberMe:boolean):ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch,getState) =>{
-
     AuthAPI.login(email,password,rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(getAuthUserDataThunk)
+                dispatch(getAuthUserDataThunk())
             }
         })
 }

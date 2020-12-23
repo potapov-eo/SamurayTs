@@ -1,47 +1,18 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLength15, RenderInputField, required} from "../../Utilits/ValidatorsForm/Validators";
+import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {loginThunk} from "../../redux/auth-reducer";
-import {profileType} from "../../Types/Types";
+import {LoginForm, LoginFormDataType} from "./LoginForn";
 
-type LoginFormDataType={
-    Login: string
-    Password:string
-    rememberMe:boolean
-}
+
 type mapDispatchToPropsProfileContainerType={
-    loginThunk:()=>void
+    loginThunk:(email:string, password:string, rememberMe:boolean)=>void
 }
-const LoginForm:React.FC<InjectedFormProps<LoginFormDataType>> = (props) => {
-
-    return (
-
-        <form onSubmit={props.handleSubmit}>
-
-            <div>
-                <Field placeholder={"Login"} name={"Login"} component={RenderInputField}
-                       validate={[ maxLength15, required ]}/>
-            </div>
-            <div>
-                <Field placeholder={"Password"} name={"password"} component={RenderInputField}
-                       validate={[ maxLength15, required ]}/>
-            </div>
-            <div>
-                <Field component={"input"} name={"rememberMe"} type={"checkbox"}/>remember me
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </form>
-    )
-}
-
 const LoginReduxForm = reduxForm<LoginFormDataType>({form: "login"})(LoginForm )
 
-const Login = () => {
+const Login = (props:mapDispatchToPropsProfileContainerType) => {
 const onSubmit=(formData:LoginFormDataType)=>{
-
+    props.loginThunk(formData.email,formData.password, formData.rememberMe )
 }
     return <div>
         <h1> LOGIN </h1>
