@@ -12,7 +12,8 @@ import {profileType} from "../../Types/Types";
 type mapStateToPropsProfileContainerType={
     profile:profileType
     status:string
-
+    authorizedUserId:number|null
+    isAuth:boolean
 }
 type mapDispatchToPropsProfileContainerType={
     setUserProfile:(profile: profileType) => void
@@ -30,7 +31,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
        let userId=this.props.match.params.userId
         if (!userId) {
-            userId ="2"
+            this.props.authorizedUserId&&(userId =(this.props.authorizedUserId).toString())
         }
         this.props.getUserProfileThunk(userId)
         this.props.getStatusThunk(userId)
@@ -51,7 +52,9 @@ class ProfileContainer extends React.Component<PropsType> {
 let  mapStateToProps = (state: AppStateType):mapStateToPropsProfileContainerType => {
     return {
         profile:state.profileReduser.profile,
-        status:state.profileReduser.status
+        status:state.profileReduser.status,
+        authorizedUserId:state.auth.userId,
+        isAuth:state.auth.isAuth
     }
 }
 
