@@ -1,6 +1,6 @@
 import React from 'react'
-import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 import styles from "./Validators.module.css"
+
 export const required = (value:string) => value ? undefined : 'Enter you text'
 export const maxLength = (max:number) => (value:string) =>
     value && value.length > max ? `Must be ${max} characters or less` : undefined

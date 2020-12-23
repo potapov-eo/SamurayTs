@@ -7,7 +7,7 @@ import {getAuthUserDataThunk} from "../../redux/auth-reducer";
 
 
 type HeaderContainerPropsType = {
-    setAuthUserData: (userId: number|null, email: string|null, login: string|null, isAuth:boolean) => void,
+    setAuthUserData: (userId: number|null, email: string|null, login: string|null, isAuth:boolean,Captcha:string) => void,
     isAuth: boolean,
     login: string|null,
     getAuthUserDataThunk:()=>void

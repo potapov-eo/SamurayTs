@@ -9,7 +9,7 @@ import {
     setUsers,
     unFollo
 } from "../redux/users-reducer";
-import {setAuthUserData} from "../redux/auth-reducer";
+import {setAuthUserData, setCaptcha} from "../redux/auth-reducer";
 
 export type ProfileResponseContactsType={
     github: string | null
@@ -51,4 +51,4 @@ export type ActionType = (ReturnType<typeof addPost> |
     ReturnType<typeof addNewMessageAC>| ReturnType<typeof follow> | ReturnType<typeof unFollo> | ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching>|
     ReturnType<typeof setAuthUserData>|ReturnType<typeof setUserProfile>|ReturnType<typeof setFollowingInProgress>|
-    ReturnType<typeof setStatus>)
+    ReturnType<typeof setStatus>|ReturnType<typeof setCaptcha>)

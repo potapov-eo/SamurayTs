@@ -27,6 +27,9 @@ type ProfileResponseType={
     contacts: ProfileResponseContactsType
     photos: photosType
    }
+type ResponseCaptchaType={
+    url:string
+}
 export const UserAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get<GetUsersResponseType>
@@ -47,11 +50,14 @@ export const AuthAPI = {
     me() {
         return instance.get<ResponseType<authResponseDataType>>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean=false) {
-        return instance.post<ResponseType<{id:number}>>(`auth/login/`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean=false, captcha:string) {
+        return instance.post<ResponseType<{id:number}>>(`auth/login/`, {email, password, rememberMe, captcha})
     },
     logOut() {
         return instance.delete<ResponseType>(`auth/login/`)
+    },
+    getCaptcha() {
+        return instance.get<ResponseCaptchaType>(`/security/get-captcha-url`)
     }
 
 }
