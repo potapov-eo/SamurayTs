@@ -3,6 +3,7 @@ import {Field, InjectedFormProps} from "redux-form";
 import {RenderInputField, required} from "../../Utilits/ValidatorsForm/Validators";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
+import style from "../../Utilits/ValidatorsForm/Validators.module.css"
 
 export type LoginFormDataType = {
     email: string
@@ -10,7 +11,8 @@ export type LoginFormDataType = {
     rememberMe: boolean
     Captcha: string
 }
-const LoginForm: React.FC<InjectedFormProps<LoginFormDataType > & mapStateToPropsLoginFormType> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<LoginFormDataType> & mapStateToPropsLoginFormType> = (props) => {
+
     return (
 
         <form onSubmit={props.handleSubmit}>
@@ -26,16 +28,18 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormDataType > & mapStateToProp
             <div>
                 <Field component={"input"} name={"rememberMe"} type={"checkbox"}/>remember me
             </div>
-
+            {props.error&&<div className={style.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
-            {props.Captcha?(<div>
-                <img alt="?"
+            {props.Captcha ? (<div>
+                <img alt="Captcha"
                      src={props.Captcha}/>
                 <Field placeholder={"Captcha"} name={"Captcha"} component={RenderInputField}
                        validate={[required]}/>
-            </div>):""}
+            </div>) : ""}
 
         </form>
     )

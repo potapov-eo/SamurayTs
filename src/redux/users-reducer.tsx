@@ -2,6 +2,7 @@ import {AppStateType} from './redux-store';
 import {UserAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {ActionType, userType} from "../Types/Types";
+import {Dispatch} from "redux";
 
 
 export type GetUsersResponseType = {
@@ -103,7 +104,7 @@ export const getUsers= (currentPage:number, pageSize:number):ThunkAction<void, A
     })
 }
 export const followThunk = (userId:number):ThunkAction<void, AppStateType, unknown, ActionType> =>{
-    return (dispatch:any) =>{
+    return (dispatch:Dispatch) =>{
     dispatch(setFollowingInProgress(userId, true))
     UserAPI.follow(userId).then(data => {
         if (data.resultCode === 0) {

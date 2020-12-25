@@ -10,6 +10,7 @@ import {
     unFollo
 } from "../redux/users-reducer";
 import {setAuthUserData, setCaptcha} from "../redux/auth-reducer";
+import {initializedSuccess} from "../redux/app-reduser";
 
 export type ProfileResponseContactsType={
     github: string | null
