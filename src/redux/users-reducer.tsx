@@ -97,6 +97,7 @@ export const setFollowingInProgress = (id: number, isFetching:boolean) => ({type
 
 export const getUsers= (currentPage:number, pageSize:number):ThunkAction<void, AppStateType, unknown, ActionType> => (dispatch:any) =>{
     dispatch(setIsFetching(true))
+    dispatch(setCurrentPage(currentPage))
       UserAPI.getUsers(currentPage, pageSize).then(data => {
         dispatch(setIsFetching(false))
         dispatch(setUsers(data.items))
